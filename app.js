@@ -28,10 +28,10 @@ const lezioneSchema = new mongoose.Schema({
         require: true, 
         unique: true,
     },
-    arguments: {
+    arguments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Argoment"
-    }
+    }]
    }); 
 
 const Argoment  = mongoose.model ("Argoment", argomentSchema)
