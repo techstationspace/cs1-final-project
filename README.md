@@ -6,9 +6,9 @@
 
 * **CourseCurriculum (Curriculum del Corso)**: Il Curriculum di un Corso è l'insieme degli Argomenti e delle Lezioni selezionati manualmente e creati da un Insegnante; contiene inoltre un'indicazione sul numero totale di ore assegnate per quel corso ed una breve descrizione.
 
-* **Topic (Materia)**: campo/oggetto di ricerca appartenente all'insegnamento e all'apprendimento/ alla disciplina di studio
+* **Lesson (Lezione)**: attività didattica, che ha una determinata durata, volta ad esporre le informazioni e le conoscenze riguardo a un particolare soggetto di studio
 
-* **Lesson (Lezione)**: attività didattica,che si svolge in un segmento determinato di tempo e di spazio, volta ad esporre le informazioni e le conoscenze riguardo a un particolare soggetto di studio
+* **Topic (Materia)**: campo/oggetto di ricerca appartenente all'insegnamento e all'apprendimento/ alla disciplina di studio
 
 * **Argument (Argomento)**: Rappresenta un elemento specifico e ristretto facente parte di una singola Materia. Ogni Argomento conterrà una breve descrizione del suo contenuto, alcuni semplici esercizi ed i link alle Risorse vertenti solo su di esso. Gli Argomenti vengono  creati dagli Insegnanti.
 
