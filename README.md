@@ -55,12 +55,12 @@ Alunno: Utenti registrati ad un corso che hanno superato i test di selezione e f
 
 Candidato: Utenti interessati ai corsi ancora in fase di selezione
 
-Modalità di insegnamento
-- Frontale
-- Laboratoriale a gruppi
-- Laboratoriale in solitaria
+Modalità di insegnamento: modalita' di proporre un'attivita
+- Frontale: lezione video registrata
+- Laboratoriale a gruppi: lavoro in chiamata video
+- Laboratoriale in solitaria: lavoro in locale
 
-Feedback 
+Feedback: riscontro degli studenti per i docenti
 
 
 Tag: Un Tag è una parola chiave associata ad una informazione che descrive l'oggetto e ne rende possibile la
