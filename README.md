@@ -4,6 +4,8 @@
 
 Course (Corso): 
 
+CourseCurriculum (Curriculum del Corso):
+
 Topic (Materia)
 
 Lesson (Lezione)
@@ -49,3 +51,4 @@ Tag
 ## Istruzioni
 -per settare MongoDB sul proprio Database usare da bash dentro il progetto `cp .env.sample .env`
 -modificare il file `.env` mettendo il prorio MONGO_URL 
+
