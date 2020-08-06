@@ -36,12 +36,12 @@ Alunno
 
 Candidato
 
-Modalità di insegnamento
-- Frontale
-- Laboratoriale a gruppi
-- Laboratoriale in solitaria
+Modalità di insegnamento: modalita' di proporre un'attivita
+- Frontale: lezione video registrata
+- Laboratoriale a gruppi: lavoro in chiamata video
+- Laboratoriale in solitaria: lavoro in locale
 
-Feedback 
+Feedback: riscontro degli studenti per i docenti
 
 Tag
 
