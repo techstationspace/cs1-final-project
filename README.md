@@ -2,7 +2,7 @@
 
 ## Glossario
 
-Course (Corso): 
+Course (Corso): Si tratta del corso in generale dove all'interno troviamo tutte le informazioni base come la data inizio, il monte ore, i docenti e i candidati o studenti (chi verrà ammesso).
 
 CourseCurriculum (Curriculum del Corso):
 
@@ -41,13 +41,13 @@ Combinazione di orario + data.
 Attività:
 Lezione, esercizitazione o progetto pianificata per un corso. Ogni attività avrà uno slot temporale univoco e nello stesso corso non ci possono essere due slot sovrapposti.
 
-Coach / Teacher
+Coach / Teacher: Sono le figure che si occupano delle formazione nei corsi le quali sono collegati ai vari corsi che insegnano e le loro materie di competenza.
 
-Admin
+Admin: utente con dashboard ad hoc per eseguire azioni di gestione e amministrazione, controllo dei registri, creazione corsi, status candidati e utenti
 
-Alunno
+Alunno: Utenti registrati ad un corso che hanno superato i test di selezione e frequentano regolarmente le lezioni
 
-Candidato
+Candidato: Utenti interessati ai corsi ancora in fase di selezione
 
 Modalità di insegnamento
 - Frontale
