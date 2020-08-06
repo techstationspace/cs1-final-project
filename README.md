@@ -6,13 +6,13 @@ Course (Corso):
 
 CourseCurriculum (Curriculum del Corso):
 
-Topic (Materia)
+Topic (Materia): campo/oggetto di ricerca appartenente all'insegnamento e all'apprendimento/ alla disciplina di studio
 
-Lesson (Lezione)
+Lesson (Lezione): attività didattica,che si svolge in un segmento determinato di tempo e di spazio, volta ad esporre le informazioni e le conoscenze riguardo a un particolare soggetto di studio
 
 Argument (Argomento)
 
-Exercise (Esercizio)
+Exercise (Esercizio): attività pensate per sollecitare lo studente ad approfondire gli argomenti ed essercitarsi nell'applicazione delle regole studiate 
 
 Resources(Risorse)
 - slide
