@@ -43,7 +43,7 @@ Combinazione di orario + data.
 
 * **Attività**: Lezione, esercizitazione o progetto pianificata per un corso. Ogni attività avrà uno slot temporale univoco e nello stesso corso non ci possono essere due slot sovrapposti.
 
-* **Coach / Teacher**: Sono le figure che si occupano delle formazione nei corsi le quali sono collegati ai vari corsi che insegnano e le loro materie di competenza.
+* **Coach**: Sono le figure che si occupano delle formazione nei corsi le quali sono collegati ai vari corsi che insegnano e le loro materie di competenza.
 
 * **Admin**: utente con dashboard ad hoc per eseguire azioni di gestione e amministrazione, controllo dei registri, creazione corsi, status candidati e utenti
 
