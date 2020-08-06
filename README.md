@@ -4,13 +4,13 @@
 
 Course (Corso): 
 
-CourseCurriculum (Curriculum del Corso):
+CourseCurriculum (Curriculum del Corso): Il Curriculum di un Corso è l'insieme degli Argomenti e delle Lezioni selezionati manualmente e creati da un Insegnante; contiene inoltre un'indicazione sul numero totale di ore assegnate per quel corso ed una breve descrizione.
 
 Topic (Materia)
 
 Lesson (Lezione)
 
-Argument (Argomento)
+Argument (Argomento): Rappresenta un elemento specifico e ristretto facente parte di una singola Materia. Ogni Argomento conterrà una breve descrizione del suo contenuto, alcuni semplici esercizi ed i link alle Risorse vertenti solo su di esso. Gli Argomenti vengono  creati dagli Insegnanti.
 
 Exercise (Esercizio)
 
@@ -44,7 +44,7 @@ Modalità di insegnamento
 - Laboratoriale in solitaria
 
 Feedback 
-
+ 
 Tag
 
 
