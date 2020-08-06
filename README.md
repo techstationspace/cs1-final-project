@@ -33,6 +33,12 @@ Nome e cognome insegnante
 Tags
 
 Calendar (Calendario)
+- vista complessiva delle giornate del corso. Espandibile per settimana per esplorare la Schedule dei singoli giorni.
+  Dati necessari:
+  - nome corso
+  - slot dei singoli giorni:
+    - titolo lezione 
+    - aula / link zoom
 
 Slot:
 Uno slot è un uno "pezzo" di tempo riutilizzabile per ogni evento che può essere presente nella piattaforma (lezioni, eventi, ecc).
