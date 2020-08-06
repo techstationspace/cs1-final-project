@@ -22,13 +22,13 @@ Resources(Risorse)
 - video
 - images
 
-Schedule (Programmazione)
+Schedule (Programmazione): Pianificare le attività di un corso.
 
 Calendar (Calendario)
 
-Slot
+Slot: intervalo di date e orari definiti nel tempo della durata di un corso.
 
-Attività
+Attività : lezione di un corso pianificata in un slot di tempo. 
 
 Coach / Teacher
 
