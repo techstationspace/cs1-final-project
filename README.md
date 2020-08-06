@@ -25,6 +25,12 @@ Resources(Risorse)
 Schedule (Programmazione)
 
 Calendar (Calendario)
+- vista complessiva delle giornate del corso. Espandibile per settimana per esplorare la Schedule dei singoli giorni.
+  Dati necessari:
+  - nome corso
+  - slot dei singoli giorni:
+    - titolo lezione 
+    - aula / link zoom
 
 Slot
 
