@@ -56,11 +56,11 @@ Modalità di insegnamento
 
 Feedback 
 
-Tag
+Tag: Un Tag è una parola chiave associata ad una informazione che descrive l'oggetto e ne rende possibile la
+     classificazione e ricerca basata su parole chiave. Esempi di Tag che potrai trovare: "docente", "esercizio", "lezione".
 
 
 ## Istruzioni
 -per settare MongoDB sul proprio Database usare da bash dentro il progetto `cp .env.sample .env`
 -modificare il file `.env` mettendo il prorio MONGO_URL 
--rilanciare npm install
 
