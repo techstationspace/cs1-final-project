@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import ViewTopic from './pages/curriculum/createTopic';
+import TopicsLibrary from './pages/curriculum/TopicsLibrary';
 
 function App() {
   return (
     <div className='App'>
       <h1>Frontend CS Final Project</h1>
-      <ViewTopic />
+      <TopicsLibrary />
     </div>
   );
 }
