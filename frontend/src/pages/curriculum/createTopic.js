@@ -17,10 +17,16 @@ class ViewTopic extends React.Component {
   render() {
     return (
       <div>
-        {this.state.lessons.map((lesson) => {
+        {this.state.lessons.map((lesson,index) => {
           return (
-            <div>
+            <div key={index}>
               <h2>Titolo: {lesson.title}</h2>
+                {lesson.arguments.map((argument,subindex)=>{
+                  return (
+                    <h3 key={subindex}>Arguments: {argument.title}</h3>
+                  )
+                })}
+            {/*   <h3>Arguments: {lesson.arguments[0].title}</h3> */}
             </div>
           );
         })}
