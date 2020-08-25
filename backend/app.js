@@ -20,7 +20,100 @@ mongoose
   .then(() => console.log('connected'))
   .catch((err) => console.error(err));
 
-const argomentSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    /* require: true, */
+  },
+  startDate: {
+    type: Date,
+    /* require: true, */
+  },
+  duration: {
+    type: Number,
+    /* require: true, */
+  },
+  courseTemplate: {},
+  location: {
+    //da definire se spostarlo su lesson
+    type: String,
+  }
+})
+
+const lessonSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    /* require: true, */
+  },
+  slot: {
+    //e' il numero di ore
+    type: Number,
+    require: true,
+  },
+  arguments: [
+    {
+      //da linkare a argomentsSchema
+    }
+  ],
+  exercises: [
+    {
+      //da linkare a exercisesSchema
+    }
+  ],
+  resourses: [
+    {
+      type: String
+    }
+  ],
+})
+
+const exerciseSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    /* require: true, */
+  },
+  diffculty: {
+    type: Number,
+  },
+  topics: [
+    {
+      //da linkare a topicsSchema
+    }
+  ],
+  resourses: [
+    {
+      type: String
+    }
+  ],
+})
+const topicSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    /* require: true, */
+  },
+})
+
+/* const argomentSchema = new mongoose.Schema({
   title: {
     type: String,
     require: true,
@@ -64,5 +157,5 @@ app.post('/lezioni', (req, res) => {
   Lezione.create({ title, arguments });
   res.send({ status: 'success argoment' });
 });
-
+ */
 app.listen(4000);
