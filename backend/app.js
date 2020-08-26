@@ -42,9 +42,8 @@ const courseSchema = new mongoose.Schema({
   location: {
     //da definire se spostarlo su lesson
     type: String,
-  }
-})
-
+  },
+});
 const lessonSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -63,20 +62,19 @@ const lessonSchema = new mongoose.Schema({
   arguments: [
     {
       //da linkare a argomentsSchema
-    }
+    },
   ],
   exercises: [
     {
       //da linkare a exercisesSchema
-    }
+    },
   ],
-  resourses: [
+  resources: [
     {
-      type: String
-    }
+      type: String,
+    },
   ],
-})
-
+});
 const exerciseSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -87,20 +85,20 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     /* require: true, */
   },
-  diffculty: {
+  difficulty: {
     type: Number,
   },
   topics: [
     {
       //da linkare a topicsSchema
-    }
+    },
   ],
   resourses: [
     {
-      type: String
-    }
+      type: String,
+    },
   ],
-})
+});
 const topicSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -111,7 +109,46 @@ const topicSchema = new mongoose.Schema({
     type: String,
     /* require: true, */
   },
-})
+});
+const argumentSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+    /* require: true, */
+  },
+  difficulty: {
+    type: Number,
+  },
+  topics: [
+    {
+      //da linkare a topicsSchema
+    },
+  ],
+  resources: [
+    {
+      type: String,
+    },
+  ],
+});
+const courseTemplate = new mongoose.Schema({
+  title: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+  },
+  lessons: [
+    {
+      // link a lessons
+    },
+  ],
+});
 
 /* const argomentSchema = new mongoose.Schema({
   title: {
