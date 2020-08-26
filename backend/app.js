@@ -38,11 +38,14 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     /* require: true, */
   },
-  courseTemplate: {},
-  location: {
-    //da definire se spostarlo su lesson
-    type: String,
+  courseTemplate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'CourseTemplate',
   },
+  // location: {
+  // da definire se spostarlo su lesson
+  //   type: String,
+  // },
 });
 const lessonSchema = new mongoose.Schema({
   title: {
@@ -55,18 +58,20 @@ const lessonSchema = new mongoose.Schema({
     /* require: true, */
   },
   slot: {
-    //e' il numero di ore
+    // è il numero di ore
     type: Number,
     require: true,
   },
   arguments: [
     {
-      //da linkare a argomentsSchema
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Argument',
     },
   ],
   exercises: [
     {
-      //da linkare a exercisesSchema
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Exercise',
     },
   ],
   resources: [
@@ -90,7 +95,8 @@ const exerciseSchema = new mongoose.Schema({
   },
   topics: [
     {
-      //da linkare a topicsSchema
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Topic',
     },
   ],
   resourses: [
@@ -125,7 +131,8 @@ const argumentSchema = new mongoose.Schema({
   },
   topics: [
     {
-      //da linkare a topicsSchema
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Topic',
     },
   ],
   resources: [
@@ -134,7 +141,7 @@ const argumentSchema = new mongoose.Schema({
     },
   ],
 });
-const courseTemplate = new mongoose.Schema({
+const courseTemplateSchema = new mongoose.Schema({
   title: {
     type: String,
     require: true,
@@ -145,10 +152,31 @@ const courseTemplate = new mongoose.Schema({
   },
   lessons: [
     {
-      // link a lessons
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Lesson',
     },
   ],
 });
+const activitySchema = new mongoose.Schema({
+  lesson: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Lesson',
+  },
+  startTime: {
+    type: Date,
+  },
+  coach: {
+    // link a uno user
+  },
+});
+
+const Topic = mongoose.model('Topic', topicSchema);
+const Argument = mongoose.model('Argument', argumentSchema);
+const Exercise = mongoose.model('Exercise', exerciseSchema);
+const Lesson = mongoose.model('Lesson', lessonSchema);
+const CourseTemplate = mongoose.model('CourseTemplate', courseTemplateSchema);
+const Course = mongoose.model('Course', courseSchema);
+const Activity = mongoose.model('Activity', activitySchema);
 
 /* const argomentSchema = new mongoose.Schema({
   title: {
@@ -195,4 +223,4 @@ app.post('/lezioni', (req, res) => {
   res.send({ status: 'success argoment' });
 });
  */
-app.listen(4000);
+app.listen(4000, () => console.log('app listening on port 4000'));
