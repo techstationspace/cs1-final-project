@@ -20,4 +20,7 @@ mongoose
   .then(() => console.log('connected'))
   .catch((err) => console.error(err));
 
+// API routes
+require('./routes')(app);
+
 app.listen(4000, () => console.log('app listening on port 4000'));
