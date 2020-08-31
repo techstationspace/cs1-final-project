@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Frontend CS Final Project</h1>
-      <Button color="primary">Good moarning</Button> 
+      <Button color="primary">Good morning</Button> 
       <AccessAlarm color="primary" />
     </div>
   );
