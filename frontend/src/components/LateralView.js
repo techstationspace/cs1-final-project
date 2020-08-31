@@ -15,8 +15,19 @@ import {
 } from '@material-ui/pickers';
 
 
-// SEVERAL TEXT FIELDS FOR FORM
+import Checkbox from '@material-ui/core/Checkbox';
 
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+
+
+
+
+
+
+
+// SEVERAL TEXT FIELDS FOR FORM
 
 
 const formStyles = makeStyles((theme) => ({
@@ -84,7 +95,7 @@ function FormPropsTextFieldsMultiline() {
           label="Required"
           multiline
           fullWidth
-          rows={4}
+          rows={2}
           placeholder="Placeholder"
           InputLabelProps={{
             shrink: true,
@@ -112,6 +123,7 @@ function FormPropsNumber() {
     </form>
   );
 }
+
 
 
 
@@ -146,6 +158,55 @@ function MaterialUIPickers() {
 
 
 
+// TAGS FORM
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
+function CheckboxesTags() {
+  return (
+    <Autocomplete
+      multiple
+      id="checkboxes-tags-demo"
+      options={topics}
+      style={{width: "auto"}}      
+      disableCloseOnSelect
+      getOptionLabel={(option) => option.title}
+      renderOption={(option, { selected }) => (
+        <React.Fragment>
+          <Checkbox
+            icon={icon}
+            checkedIcon={checkedIcon}
+            style={{ marginRight: 8 }}
+            checked={selected}
+          />
+          {option.title}
+        </React.Fragment>
+      )}      
+      renderInput={(params) => (
+        <TextField {...params} variant="outlined" placeholder="Favorites" />
+      )}
+    />
+  );
+}
+
+const topics = [
+  { title: 'HTML' },
+  { title: 'CSS'},
+  { title: 'React'},
+  { title: 'Bootstrap'},
+  { title: 'CDN' },
+  { title: "JavaScript" },
+  { title: 'Figma'},
+  { title: 'Git'},
+  { title: 'GitHub' },
+  { title: 'MongoDB'},
+  { title: 'Express'},
+  { title: 'Axios'},
+  { title: 'Node'},
+  { title: 'Untagged'},
+  { title: 'Pstman' }  
+];
 
 
 // GRID COMPONENT
@@ -195,13 +256,11 @@ function CSSGrid() {
         <Typography>Start date</Typography>
         <MaterialUIPickers></MaterialUIPickers>
         </Grid>
-        <Grid item xs={8}>
-          <Paper className={classes.paper}>xs=8</Paper>
+        <Grid item xs={12}>
+        <Typography>Topics</Typography>
+        <CheckboxesTags></CheckboxesTags>
         </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>xs=4</Paper>
-        </Grid>
-      </Grid>
+       </Grid>
       {/* <Divider className={classes.divider} />
       <Typography variant="subtitle1" gutterBottom>
         CSS Grid Layout:
