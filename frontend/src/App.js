@@ -4,6 +4,7 @@ import { AccessAlarm } from "@material-ui/icons";
 import { Button, ButtonBase } from "@material-ui/core";
 
 import TopicsLibrary from "./pages/curriculum/TopicsLibrary";
+import  SimpleModal  from "./components/LateralView";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Button variant="contained" color="primary">
         Primary
       </Button>
+      <SimpleModal></SimpleModal>
     </div>
   );
 }
