@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./App.css";
+import AppView from "./components/AppView";
 import LoginView from "./components/LoginView";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     <div className="App">
       <h1>Frontend CS Final Project</h1>
       { isLogged
-        ? <h1>AppView</h1>
+        ? <AppView />
         : <LoginView submitForm={(e) => checkLogin(e)} />
       }
     </div>
