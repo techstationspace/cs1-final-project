@@ -17,18 +17,22 @@ class CanddidacyPage extends React.Component{
     const { classes } = this.props;
       return(
         <Container>
-          <Paper className={classes.padding}>
+          <Paper className={classes.padding} elevation={3}>
             <Grid container direction="row" spacing={3}>
               <Grid justify="flex-start" alignItems="flex-start" item >
-                <TextField id="standard-basic" label="Name" />
+                <TextField required id="standard-basic" label="Name" />
               </Grid>
               <Grid justify="flex-start" alignItems="flex-start" item >
-                <TextField id="standard-basic" label="Surname" />
+                <TextField required id="standard-basic" label="Surname" />
               </Grid>
             </Grid>
-            <Grid container direction="row" spacing={3}>
+            <Grid container className={classes.marginTop}>
+                <TextField required id="Email" label="E-mail"/>
+            </Grid>
+            <Grid container className={classes.marginTop} direction="row" spacing={3}>
               <Grid justify="flex-start" alignItems="flex-start" item>
               <TextField
+                required
                 id="date"
                 label="Birthday"
                 type="date"
@@ -39,7 +43,7 @@ class CanddidacyPage extends React.Component{
               />
               </Grid>
               <Grid justify="flex-start" alignItems="flex-start" item >
-                <FormControl component="fieldset">
+                <FormControl component="fieldset" required>
                   <FormLabel component="legend">Gender</FormLabel>
                   <RadioGroup row aria-label="gender" name="gender1">
                     <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -51,10 +55,10 @@ class CanddidacyPage extends React.Component{
               </Grid>
             </Grid>
             <Grid container >
-                <TextField style={{marginRight: '5rem'}} id="Address" fullWidth label="Address"/>
+                <TextField style={{marginRight: '5rem'}} id="Address" fullWidth label="Address" required/>
             </Grid>
             <Grid container>
-              <Autocomplete
+              <Autocomplete required
                 id="country-select-demo"
                 style={{ width: 300, marginTop: '1rem' }}
                 options={countries}
@@ -82,17 +86,25 @@ class CanddidacyPage extends React.Component{
                 )}
               />
             </Grid>
+            <Grid container className={classes.marginTop} spacing={3}>
+              <Grid item>
+                <TextField id="password" label="Password" type="password" required />
+              </Grid>
+              <Grid item>
+                <TextField id="confirm-password" label="Confirm Password" type="password" required />
+              </Grid>
+            </Grid>
             <Grid container className={classes.marginTop}>
-              <FormControl component="fieldset">
+              <FormControl component="fieldset" required>
                 <FormLabel component="legend">Accept the terms and condition</FormLabel>
-                <RadioGroup  row aria-label="gender" name="termsCondition">
+                <RadioGroup  row aria-label="gender" name="termsCondition" >
                   <FormControlLabel value="yes" control={<Radio />} label="Accept" />
                   <FormControlLabel value="no" control={<Radio />} label="No accept" />
                 </RadioGroup>
               </FormControl>
             </Grid>
             <Grid container className={classes.marginTop}>
-              <FormControl component="fieldset">
+              <FormControl component="fieldset" required>
                 <FormLabel component="legend">Accept the privacy policy</FormLabel>
                 <RadioGroup  row aria-label="gender" name="termsCondition">
                   <FormControlLabel value="yes" control={<Radio />} label="Accept" />
@@ -101,7 +113,7 @@ class CanddidacyPage extends React.Component{
               </FormControl>
             </Grid>
             <Grid container className={classes.marginTop}>
-              <FormControl component="fieldset">
+              <FormControl component="fieldset" required>
                 <FormLabel component="legend">Agreement to the use of images</FormLabel>
                 <RadioGroup  row aria-label="gender" name="termsCondition">
                   <FormControlLabel value="yes" control={<Radio />} label="Accept" />
