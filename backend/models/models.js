@@ -1,5 +1,21 @@
 const mongoose = require('mongoose');
 
+const userSchema = new mongoose.Schema({
+  userName: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
+  userRole: {
+    type: String,
+    default: 'candidate',
+    enum: ['student', 'candidate', 'coach', 'admin'],
+  },
+});
 const courseSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -156,6 +172,7 @@ const activitySchema = new mongoose.Schema({
   },
 });
 
+const User = mongoose.model('User', userSchema);
 const Topic = mongoose.model('Topic', topicSchema);
 const Argument = mongoose.model('Argument', argumentSchema);
 const Exercise = mongoose.model('Exercise', exerciseSchema);
@@ -164,4 +181,13 @@ const CourseTemplate = mongoose.model('CourseTemplate', courseTemplateSchema);
 const Course = mongoose.model('Course', courseSchema);
 const Activity = mongoose.model('Activity', activitySchema);
 
-module.exports = { Topic, Argument, Exercise, Lesson, CourseTemplate, Course, Activity }
+module.exports = {
+  User,
+  Topic,
+  Argument,
+  Exercise,
+  Lesson,
+  CourseTemplate,
+  Course,
+  Activity,
+};
