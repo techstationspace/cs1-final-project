@@ -1,21 +1,13 @@
 import React from "react";
-import "./App.css";
-import { AccessAlarm } from "@material-ui/icons";
-import { Button, ButtonBase } from "@material-ui/core";
 
-import TopicsLibrary from "./pages/curriculum/TopicsLibrary";
+import AppView from "./components/AppView";
+import LoginView from "./components/LoginView";
+import "./App.css";
+
+const logged = true;
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Frontend CS Final Project</h1>
-      <TopicsLibrary />
-      <AccessAlarm />
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-    </div>
-  );
+  return <div className="App">{!!logged ? <AppView /> : <LoginView />}</div>;
 }
 
 export default App;
