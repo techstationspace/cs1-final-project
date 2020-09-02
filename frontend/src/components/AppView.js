@@ -11,7 +11,7 @@ function AppView() {
         <Grid item md={3} lg={3} xl={4}>
           <SidebarMenu routes={Routes} />
         </Grid>
-        <Grid item>
+        <Grid item md>
           <Switch>
             {Routes.map((route, i) => (
               <RouteWithSubRoutes key={i} {...route} />
@@ -27,10 +27,7 @@ function RouteWithSubRoutes(route) {
   return (
     <Route
       path={route.path}
-      render={(props) => (
-        // pass the sub-routes down to keep nesting
-        <route.component {...props} routes={route.routes} />
-      )}
+      render={(props) => <route.component {...props} routes={route.routes} />}
     />
   );
 }
