@@ -1,8 +1,11 @@
 const { Topic } = require("../../models/models.js");
 const { read } = require("fs");
+const {testMiddleware, checkRole, userAuth} = require("../../utils/auth.js");
 
 module.exports = (app) => {
-  app.get("/api/topics", (req, res, next) => {
+  app.get("/api/topics", userAuth, checkRole (
+    ["student", "coach"]
+  ), testMiddleware, (req, res, next) => {
     Topic.find({})
       .exec()
       .then((topics) => res.json(topics))
