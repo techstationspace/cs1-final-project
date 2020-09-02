@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
   role: {
     type: String,
@@ -19,20 +19,20 @@ const userSchema = new mongoose.Schema({
 const courseSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   description: {
     type: String,
-    /* require: true, */
+    /* required: true, */
   },
   startDate: {
     type: Date,
-    /* require: true, */
+    /* required: true, */
   },
   duration: {
     type: Number,
-    /* require: true, */
+    /* required: true, */
   },
   courseTemplate: {
     type: mongoose.Schema.Types.ObjectId,
@@ -47,17 +47,17 @@ const courseSchema = new mongoose.Schema({
 const lessonSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   description: {
     type: String,
-    /* require: true, */
+    /* required: true, */
   },
   slot: {
     // è il numero di ore
     type: Number,
-    require: true,
+    required: true,
   },
   arguments: [
     {
@@ -81,12 +81,12 @@ const lessonSchema = new mongoose.Schema({
 const exerciseSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   description: {
     type: String,
-    /* require: true, */
+    /* required: true, */
   },
   difficulty: {
     type: Number,
@@ -107,24 +107,24 @@ const exerciseSchema = new mongoose.Schema({
 const topicSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   description: {
     type: String,
-    /* require: true, */
+    /* requiredd: true, */
   },
 });
 
 const argumentSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   description: {
     type: String,
-    /* require: true, */
+    /* required: true, */
   },
   difficulty: {
     type: Number,
@@ -145,7 +145,7 @@ const argumentSchema = new mongoose.Schema({
 const courseTemplateSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   description: {
