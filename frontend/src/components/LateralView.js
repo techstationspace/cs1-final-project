@@ -2,7 +2,11 @@ import React from "react";
 import { Modal, Grid, Box, Button } from "@material-ui/core";
 import "../styles/lateral_view.css";
 
-function LateralView({ children, onOpen, onClose = () => {} }) {
+function LateralView({
+  children,
+  onOpen,
+  onClose = () => {},
+}) {
   return (
     <Modal open={onOpen}>
       <Grid container justify="flex-end" alignItems="flex-start" spacing={0}>
