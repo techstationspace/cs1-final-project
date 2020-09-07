@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
-import { Container, Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox, makeStyles } from '@material-ui/core';
-import { Face, Fingerprint, PinDropSharp } from '@material-ui/icons'
+import React, { useState, useEffect } from 'react';
+import { Container, Paper, Grid, TextField, Button, FormControlLabel, Checkbox, makeStyles } from '@material-ui/core';
+import { Face, Fingerprint } from '@material-ui/icons'
 
+
+    // TO DO LIST:
+    //"Remember me" function needs to be implemented
+    //"Forgot Password" function needs to be implemented
+
+ 
 const styled = makeStyles({
     margin: {
         margin: "1rem",
@@ -25,13 +31,24 @@ const LoginForm = ({loginDataEx, onSubmit}) => {
         )
     }
 
-    //Remember me function needs to be implemented <------------------
-
-    //Forgot Password function needs to be implemented <--------------
-
+    // Pressing "Enter" when either input field of #password or #username are focused triggers onSubmit function
+    function handleEnterKeypress(e) {
+        const inputIdFields = ["username", "password"]
+        if (e.key === 'Enter' && (inputIdFields.includes(document.activeElement.id))) {
+            onSubmit(loginData);
+        }
+    }
  
+    useEffect(() => {
+        document.addEventListener("keypress", handleEnterKeypress)
+        return () => {document.removeEventListener("keypress", handleEnterKeypress)}
+    }, [loginData])
+
+
+    //JSX
     return (
         <Container maxWidth="sm">
+            <Button className={classes.divider} variant="contained" color="primary" onClick={() => console.log(loginData)}>LEGGI DATI LOGIN FIGLIO</Button>
             <Paper className={classes.padding}elevation={3}>
                 <div className={classes.margin}>
                     <Grid container spacing={8} alignItems="flex-end">
