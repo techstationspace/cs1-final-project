@@ -31,15 +31,14 @@ const LoginForm = ({loginDataEx, onSubmit}) => {
         )
     }
 
-    // Pressing "Enter" when either input field of #password or #username are focused triggers onSubmit function
-    function handleEnterKeypress(e) {
-        const inputIdFields = ["username", "password"]
-        if (e.key === 'Enter' && (inputIdFields.includes(document.activeElement.id))) {
-            onSubmit(loginData);
-        }
-    }
  
-    useEffect(() => {
+    useEffect(() => {// Pressing "Enter" when either input field of #password or #username are focused triggers onSubmit function
+        function handleEnterKeypress(e) {
+            const inputIdFields = ["username", "password"]
+            if (e.key === 'Enter' && (inputIdFields.includes(document.activeElement.id))) {
+                onSubmit(loginData);
+            }
+        }
         document.addEventListener("keypress", handleEnterKeypress)
         return () => {document.removeEventListener("keypress", handleEnterKeypress)}
     }, [loginData])
