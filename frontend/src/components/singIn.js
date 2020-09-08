@@ -1,43 +1,102 @@
-import React from 'react';
-import {TextField, Container, Radio, Paper, Grid, withStyles, FormControl, FormLabel, RadioGroup, FormControlLabel, Button} from '@material-ui/core';
+import React, { useState } from "react";
+import {
+  TextField,
+  Container,
+  Radio,
+  Paper,
+  Grid,
+  withStyles,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Button,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const styles = theme => ({
+const useStyles = makeStyles((theme) => ({
   marginTop: {
-      marginTop: '1rem',
+    marginTop: "1rem",
   },
   padding: {
-      padding: theme.spacing.unit
+    padding: "2rem",
+  },
+}));
+let nameCourse = "CODING SCHOOL";
+let emptyData = {
+  name: "",
+  surname: "",
+  email: "",
+};
+function SingIn({ data, onSubmit }) {
+  const classes = useStyles();
+  const [form, setForm] = useState(data || emptyData);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(form);
+    onSubmit(form);
+    // You should see email and password in console.
+    // ..code to submit form to backend here...
   }
-});
-let nameCourse = "CODING SCHOOL"
-class SingIn extends React.Component{
-  render(){
-    const { classes } = this.props;
-      return(
-        <Container>
-          <h1>Iscrizione al corso "{nameCourse}"</h1>
-          <Paper className={classes.padding} elevation={3}>
-            <Grid container direction="row" spacing={3}>
-              <Grid justify="flex-start" alignItems="flex-start" item >
-                <TextField required id="standard-basic" label="Name" />
-              </Grid>
-              <Grid justify="flex-start" alignItems="flex-start" item >
-                <TextField required id="standard-basic" label="Surname" />
-              </Grid>
-            </Grid>
-            <Grid container className={classes.marginTop}>
-                <TextField required id="Email" label="E-mail"/>
-            </Grid>
-          </Paper>
-          <Grid container className={classes.marginTop} >
-            <Grid item>
-              <Button variant="contained" color="primary">
-                Send Email
-              </Button>
-            </Grid>
+  function updateData(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  }
+  return (
+    <Container>
+      <h1>Iscrizione al corso "{nameCourse}"</h1>
+      <Paper className={classes.padding} elevation={3}>
+        <form onSubmit={handleSubmit}>
+        <Grid container justify="center" direction="row" className={classes.marginTop} spacing={1}>
+          <Grid xs={3} item>
+            <TextField
+              fullWidth
+              required
+              name="name"
+              value={form.name}
+              onInput={updateData}
+              label="Name"
+            />
           </Grid>
-        </Container>
-  )  
- }
+          <Grid xs={3} item>
+            <TextField
+              fullWidth
+              required
+              name="surname"
+              value={form.surname}
+              onInput={updateData}
+              label="Surname"
+            />
+          </Grid>
+          </Grid>
+          <Grid container justify="center" className={classes.marginTop}>
+            <Grid item xs={5}>
+            <TextField
+              fullWidth
+              required
+              type="email"
+              name="email"
+              value={form.email}
+              onInput={updateData}
+              //onInput={(e) => setForm(e.target.value)}
+              label="E-mail"
+            />
+            </Grid>
+            <Grid item xs={1}/>
+          </Grid>
+        <Grid container justify="center" className={classes.marginTop}>
+        <Grid item>
+          <Button type="submit"  variant="contained" color="primary">
+            Send Email
+          </Button>
+        </Grid>
+      </Grid>
+        </form>
+      </Paper>
+    </Container>
+  );
 }
-export default withStyles(styles)(SingIn);
+export default SingIn;
