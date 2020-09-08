@@ -19,7 +19,7 @@ const checkRole = roles => (req, res, next) => {
 const userAuth = (req, res, next) => {
   // Questa funzione dovra identificare l'utente tramite JWT
   // Per ora è un "fake"
-  const user = {username: "Melissa", role: "student"}
+  const user = {username: "Melissa", role: "candidate"}
   req.user = user;
   console.log(req);
   next();

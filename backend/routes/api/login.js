@@ -10,7 +10,7 @@ module.exports = (app) => {
      res.status(400).json({success: false, message: "Il nome è stato preso"})
      return
     }
-    const userDB = new User({username : user.username, password : user.password, role:'candidate'})
+    const userDB = new User({username : user.username, password : user.password, role : user.role})
     await userDB.save()
     res.status(200).json({success: true, message: "L'utente è registrato"})
   });
