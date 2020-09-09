@@ -5,22 +5,62 @@ const candidateSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-  mail: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    /* required: true, <-------ATTENZIONE !!!!!*/ 
-  },
   name: {
-    type: String,
-    required: true,
+  type: String,
+  required: true,
   },
   surname:{
     type: String,
     required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  verifiedEmail: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  gender: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  municipality: {
+    type: String,
+  },
+  zipCode: {
+    type: Number,
+  },
+  nationality: {
+    code: {
+      type: String,
+    },
+    label: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    }
+  },
+  termsCondition: {
+    type: Boolean,
+  },
+  privacy: {
+    type: Boolean,
+  },
+  images: {
+    type: Boolean,
+  },
+  birthday: {
+    type: Date,
   },
   role: {
     type: String,
