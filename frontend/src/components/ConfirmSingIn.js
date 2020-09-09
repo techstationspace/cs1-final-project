@@ -6,7 +6,7 @@ const styles = theme => ({
       marginTop: '1rem',
   },
   padding: {
-      padding: theme.spacing.unit
+      padding: '2rem'
   }
 });
 let nameCourse = "CODING SCHOOL"
