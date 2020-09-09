@@ -15,7 +15,7 @@ import { Autocomplete } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   marginTop: {
-    marginTop: "1rem",
+    marginTop: "2rem",
   },
   padding: {
     padding: "6rem",
@@ -61,7 +61,7 @@ function Form({ data, onSubmit }) {
     <div className={classes.padding}>
       <form onSubmit={handleSubmit}>
         <Grid container direction="row" spacing={4}>
-          <Grid xs={3} justify="flex-start" alignItems="flex-start" item>
+          <Grid xs={3} item>
             <TextField
               fullWidth
               required
@@ -71,7 +71,7 @@ function Form({ data, onSubmit }) {
               label="Name"
             />
           </Grid>
-          <Grid xs={3} justify="flex-start" alignItems="flex-start" item>
+          <Grid xs={3} item>
             <TextField
               fullWidth
               required
@@ -82,7 +82,7 @@ function Form({ data, onSubmit }) {
             />
           </Grid>
           <Grid item xs={6}></Grid>
-          <Grid xs={6} item className={classes.marginTop}>
+          <Grid xs={6} item >
             <TextField
               fullWidth
               required
@@ -101,12 +101,11 @@ function Form({ data, onSubmit }) {
           direction="row"
           spacing={3}
         >
-          <Grid justify="flex-start" alignItems="flex-start" item>
+          <Grid item>
             <TextField
               value={form.birthday}
               onInput={updateData}
               required
-              defaultValue={form.birthday}
               name="birthday"
               label="Birthday"
               type="date"
@@ -117,13 +116,12 @@ function Form({ data, onSubmit }) {
           </Grid>
         </Grid>
         <Grid container className={classes.marginTop}>
-          <Grid justify="flex-start" alignItems="flex-start" item>
+          <Grid item>
             <FormControl component="fieldset" required name="gender">
               <FormLabel component="legend">Gender</FormLabel>
               <RadioGroup
                 row
                 aria-label="gender"
-                defaultValue={form.gender}
                 value={form.gender}
                 onChange={updateData}
                 name="gender"
@@ -153,7 +151,7 @@ function Form({ data, onSubmit }) {
           </Grid>
         </Grid>
         <Grid container direction="row" spacing={4}>
-          <Grid xs={3} justify="flex-start" alignItems="flex-start" item>
+          <Grid xs={3} item>
             <TextField
               fullWidth
               required
@@ -163,7 +161,7 @@ function Form({ data, onSubmit }) {
               label="Municipality"
             />
           </Grid>
-          <Grid xs={3} justify="flex-start" alignItems="flex-start" item>
+          <Grid xs={3} item>
             <TextField
               fullWidth
               required
@@ -189,13 +187,13 @@ function Form({ data, onSubmit }) {
         <Grid container className={classes.marginTop}>
           <Autocomplete
             name="nationality"
-            defaultValue={nationality}
             value={nationality}
             onChange={(event, newValue) => {
               setValue(newValue);
             }}
             style={{ width: 300 }}
             options={countries}
+            getOptionSelected={(option)=> option.label}
             classes={{
               option: classes.option,
             }}
@@ -252,7 +250,7 @@ function Form({ data, onSubmit }) {
               row
               aria-label="gender"
               name="termsCondition"
-              defaultValue={form.termsCondition}
+              //defaultValue={form.termsCondition}
               value={form.termsCondition}
               onChange={updateData}
               required
@@ -277,7 +275,7 @@ function Form({ data, onSubmit }) {
               row
               aria-label="gender"
               name="privacy"
-              defaultValue={form.privacy}
+              //defaultValue={form.privacy}
               value={form.privacy}
               onChange={updateData}
             >
@@ -303,7 +301,7 @@ function Form({ data, onSubmit }) {
               row
               aria-label="gender"
               name="images"
-              defaultValue={form.images}
+              //defaultValue={form.images}
               value={form.images}
               onChange={updateData}
             >
@@ -322,9 +320,9 @@ function Form({ data, onSubmit }) {
         </Grid>
         <Button
           disabled={
-            correctPassword == true &&
-            form.privacy == "true" &&
-            form.termsCondition == "true"
+            correctPassword === true &&
+            form.privacy === "true" &&
+            form.termsCondition === "true"
               ? false
               : true
           }
