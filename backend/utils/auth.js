@@ -5,6 +5,15 @@ async function validateUsername(username){
   return userQuery ? true : false
 }
 
+async function validateEmail(email){
+  const userQuery = await User.findOne({email: email})
+  return () => {
+    if(userQuery) {
+      return {isTaken: true, isVerified: (userQuery.verifiedEmail)}
+    } else {return {isTaken: false}
+  }}
+}
+
 function testMiddleware (req, res, next) {
   console.log(req);
   next();
@@ -25,4 +34,4 @@ const userAuth = (req, res, next) => {
   next();
 }
 
-module.exports = {validateUsername, testMiddleware, checkRole, userAuth}
+module.exports = {validateUsername, validateEmail, testMiddleware, checkRole, userAuth}

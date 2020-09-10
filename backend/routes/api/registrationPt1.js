@@ -1,5 +1,5 @@
 const { User } = require('../../models/models.js');
-const {validateEmail} = require('../../utils/authMODIFIED.js');
+const {validateEmail} = require('../../utils/auth.js');
 const sendEmail = require("../../utils/sendemail")
 
 module.exports = (app) => {
