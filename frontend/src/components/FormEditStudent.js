@@ -30,7 +30,7 @@ let emptyData = {
   address: "",
   municipality: "",
   zipCode: "",
-  nationality: "",
+  nationality: { code: "", label: "", phone: "" },
   termsCondition: "",
   privacy: "",
   images: "",
@@ -38,9 +38,9 @@ let emptyData = {
 };
 
 function Form({ data, onSubmit }) {
+  const entryNationality = data? data.nationality : { code: "", label: "", phone: "" }
   const classes = useStyles();
-  const [correctPassword, setCorrectPassword] = useState(true);
-  const [nationality, setValue] = useState(data.nationality || "");
+  const [nationality, setValue] = useState( entryNationality);
   const [form, setForm] = useState(data || emptyData);
 
   function handleSubmit(event) {

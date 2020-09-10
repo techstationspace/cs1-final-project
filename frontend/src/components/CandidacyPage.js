@@ -38,9 +38,10 @@ let emptyData = {
 };
 
 function Form({ data, onSubmit }) {
+  const entryNationality = data? data.nationality : { code: "", label: "", phone: "" }
   const classes = useStyles();
-  const [correctPassword, setCorrectPassword] = useState(true);
-  const [nationality, setValue] = useState(data.nationality || "");
+  const [correctPassword, setCorrectPassword] = useState(false);
+  const [nationality, setValue] = useState(entryNationality);
   const [form, setForm] = useState(data || emptyData);
 
   function handleSubmit(event) {
@@ -66,7 +67,7 @@ function Form({ data, onSubmit }) {
               fullWidth
               required
               name="name"
-              value={form.name}
+              /* value={form.name} */
               onInput={updateData}
               label="Name"
             />
