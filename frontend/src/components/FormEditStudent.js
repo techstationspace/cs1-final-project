@@ -279,12 +279,12 @@ function Form({ data, onSubmit }) {
               onChange={updateData}
             >
               <FormControlLabel
-                value={true}
+                value="true"
                 control={<Radio />}
                 label="Accept"
               />
               <FormControlLabel
-                value={false}
+                value="false"
                 control={<Radio />}
                 label="No accept"
               />
