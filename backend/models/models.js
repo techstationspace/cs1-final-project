@@ -5,10 +5,11 @@ const candidateSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-  },
+  //  username: {
+  //  type: String,
+  //  required: true,
+  //},
+
   name: {
     type: String,
     required: true,
@@ -24,7 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   verifiedEmail: {
     type: Boolean,
-    default: false,
+    default: true, // change when mail is confirm
     required: true,
   },
   password: {

@@ -5,13 +5,14 @@ async function validateUsername(username){
   return userQuery ? true : false
 }
 
-async function validateEmail(email){
-  const userQuery = await User.findOne({email: email})
+async function validateEmail(email, verifiedEmail){
+  const userQuery = await User.findOne({email})
+  //return userQuery ? true : false
   return () => {
     if(userQuery) {
       return {isTaken: true, isVerified: (userQuery.verifiedEmail)}
     } else {return {isTaken: false}
-  }}
+  }} 
 }
 
 function testMiddleware (req, res, next) {
@@ -28,7 +29,7 @@ const checkRole = roles => (req, res, next) => {
 const userAuth = (req, res, next) => {
   // Questa funzione dovra identificare l'utente tramite JWT
   // Per ora è un "fake"
-  const user = {username: "Melissa", role: "candidate"}
+  const user = {email: "batman@gmail.com", role: "candidate"}
   req.user = user;
   console.log(req);
   next();
