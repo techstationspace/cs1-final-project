@@ -67,7 +67,7 @@ function Form({ data, onSubmit }) {
               fullWidth
               required
               name="name"
-              /* value={form.name} */
+              value={form.name}
               onInput={updateData}
               label="Name"
             />

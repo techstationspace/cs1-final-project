@@ -4,7 +4,7 @@ import CoursesPage from "./routes/CoursesPage";
 import CourseTemplatesPage from "./routes/CourseTemplatesPage";
 import CoachesPage from "./routes/CoachesPage";
 import StudentsPage from "./routes/StudentsPage";
-
+import Profile from "./routes/Profile";
 export const Routes = [
   {
     name: "dashboard",
@@ -37,4 +37,9 @@ export const Routes = [
     path: "/students",
     component: StudentsPage,
   },
+  {
+    name: "profile",
+    path: `/profile`,
+    component: Profile,
+  }
 ];
