@@ -38,7 +38,7 @@ let emptyData = {
 };
 
 function Form({ data, onSubmit }) {
-  const entryNationality = data? data.nationality : { code: "", label: "", phone: "" }
+  const entryNationality = data ? data.nationality : { code: "", label: "", phone: "" }
   const classes = useStyles();
   const [correctPassword, setCorrectPassword] = useState(false);
   const [nationality, setValue] = useState(entryNationality);
@@ -194,7 +194,7 @@ function Form({ data, onSubmit }) {
             }}
             style={{ width: 300 }}
             options={countries}
-            getOptionSelected={(option)=> option.label}
+            getOptionSelected={(option) => option.label}
             classes={{
               option: classes.option,
             }}
@@ -322,8 +322,8 @@ function Form({ data, onSubmit }) {
         <Button
           disabled={
             correctPassword === true &&
-            form.privacy === "true" &&
-            form.termsCondition === "true"
+              form.privacy === "true" &&
+              form.termsCondition === "true"
               ? false
               : true
           }

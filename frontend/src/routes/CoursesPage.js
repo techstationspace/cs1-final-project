@@ -1,18 +1,33 @@
 import React, { useState } from "react";
 import nextId from "react-id-generator";
-import { Grid, Button, TextField } from "@material-ui/core";
-import { Switch, Route, Link } from "react-router-dom";
+import { Grid, Button, TextField, makeStyles } from "@material-ui/core";
+import { Route, Link } from "react-router-dom";
 import Course from "./Course";
 import LateralView from "../components/LateralView";
+import FormEditStudent from "../components/FormEditStudent"
 
 const courses = [
 ];
+
+//stile bottone
+const useStyles = makeStyles({
+  button: {
+    
+    background: 'gray',
+    margin: "0.5rem",
+    color: 'white',
+    height: 50,
+    padding: '0 30px',
+    
+  },
+});
 
 export default function CoursesPage() {
   const [openLateralView, setOpenLateralView] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const classesButton = useStyles();
 
   const submitForm = () => {
     let newFormData = {
@@ -21,12 +36,12 @@ export default function CoursesPage() {
       title: title,
       description: description,
     };
-    if(courseId) {
+    if (courseId) {
       let course = findCourse(courseId);
       course.path = newFormData.path;
       course.title = newFormData.title;
       course.description = newFormData.description;
-      
+
     } else {
       courses.push(newFormData);
     }
@@ -55,21 +70,26 @@ export default function CoursesPage() {
   }
   return (
     <>
-      <h1>Courses Page</h1>
-      <Button onClick={() => setOpenLateralView(true)}>
-        New Course
-      </Button>
+
+      <Grid container direction="row" alignItems="center" justify="space-between" >
+        <Grid item >  <h1>Courses Page</h1> </Grid>
+        <Grid item >
+          <Button className={classesButton.button} onClick={() => setOpenLateralView(true)} >
+            New Course
+      </Button> </Grid>
+      </Grid>
+
       <Grid container spacing={3}>
         {courses.map((course, idx) => (
           <Grid key={idx} item md={6} lg={4}>
+
             <Link to={`courses/${course.id}`}>
               <h2>{course.title}</h2>
               <p>{course.description}</p>
             </Link>
             <Button
               variant="contained"
-              onClick={() => editCourse(course.id)}
-            >
+              onClick={() => editCourse(course.id)}>
               Edit course
             </Button>
           </Grid>
@@ -79,8 +99,9 @@ export default function CoursesPage() {
         onOpen={openLateralView}
         onClose={() => setOpenLateralView(false)}
       >
+        <FormEditStudent/>
         {/* Here start the children inside LateralView */}
-        <form style={{padding: "1rem"}}>
+        <form style={{ padding: "1rem" }}>
           <TextField
             id="title-field"
             label="Title"
@@ -109,11 +130,11 @@ export default function CoursesPage() {
           </Button>
         </form>
       </LateralView>
-      <Switch>
+{/*       <Switch>
         {courses.map((course, i) => (
           <CoursePage key={i} {...course} />
         ))}
-      </Switch>
+      </Switch> */}
     </>
   );
 }
