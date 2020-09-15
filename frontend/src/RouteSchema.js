@@ -7,7 +7,7 @@ import StudentsPage from "./routes/StudentsPage";
 import Profile from "./routes/Profile";
 export const Routes = [
   {
-    name: "dashboard",
+    name: "TechStation",
     path: "/",
     exact: true,
     component: DashboardPage,

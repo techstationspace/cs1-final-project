@@ -5,7 +5,7 @@ import "../styles/lateral_view.css";
 function LateralView({
   children,
   onOpen,
-  onClose = () => {},
+  onClose = () => { },
 }) {
   return (
     <Modal open={onOpen}>
