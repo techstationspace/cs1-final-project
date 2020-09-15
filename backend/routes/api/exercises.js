@@ -25,7 +25,7 @@ module.exports = (app) => {
 
     const exerciseNew = new Exercise({
       title: exercise.title,
-      description: exercise.description      
+      description: exercise.description
     });
 
     exerciseNew
@@ -43,21 +43,31 @@ module.exports = (app) => {
   app.delete("/api/exercises", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const exercise = req.body.exercise;
     Exercise.findOneAndDelete({ title: exercise.title })
-      .then(() =>
-        res.status(200).json({ success: true, message: "exercise deleted" })
-      )
-      .catch((err) => res.status(400).json({ success: false, message: err }));
+      .then((exercise) => {
+        if (exercise == null) {
+          res.status(400).json({ success: false, message: "Exercise doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Exercise deleted" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
+
   });
 
-  
+
   app.patch("/api/exercises/edit/:title", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const exercise = req.body.exercise;
     Exercise.findOneAndUpdate(
       { title: req.params.title },
       { title: exercise.title, description: exercise.description })
-      .then(() => 
-      res.status(200).json({ success: true, message: "exercise updated" }))
-      .catch((err) => res.status(400).json({ success: false, message: err }));    
+      .then((exercise) => {
+        if (exercise == null) {
+          res.status(400).json({ success: false, message: "Exercise doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Exercise updated" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
 
 

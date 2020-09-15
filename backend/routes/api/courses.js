@@ -26,7 +26,7 @@ module.exports = (app) => {
     const courseNew = new Course({
       title: course.title,
       description: course.description,
-      duration: course.duration     
+      duration: course.duration
     });
 
     courseNew
@@ -44,21 +44,30 @@ module.exports = (app) => {
   app.delete("/api/courses", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const course = req.body.course;
     Course.findOneAndDelete({ title: course.title })
-      .then(() =>
-        res.status(200).json({ success: true, message: "course deleted" })
-      )
-      .catch((err) => res.status(400).json({ success: false, message: err }));
+      .then((course) => {
+        if (course == null) {
+          res.status(400).json({ success: false, message: "Course doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Course deleted" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
 
-  
+
   app.patch("/api/courses/edit/:title", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const course = req.body.course;
     Course.findOneAndUpdate(
       { title: req.params.title },
-      { title: course.title, description: course.description, duration: course.duration})
-      .then(() => 
-      res.status(200).json({ success: true, message: "course updated" }))
-      .catch((err) => res.status(400).json({ success: false, message: err }));    
+      { title: course.title, description: course.description, duration: course.duration })
+      .then((course) => {
+        if (course == null) {
+          res.status(400).json({ success: false, message: "Course doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Course updated" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
 
 

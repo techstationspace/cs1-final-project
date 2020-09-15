@@ -44,21 +44,30 @@ module.exports = (app) => {
   app.delete("/api/lessons", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const lesson = req.body.lesson;
     Lesson.findOneAndDelete({ title: lesson.title })
-      .then(() =>
-        res.status(200).json({ success: true, message: "lesson deleted" })
-      )
-      .catch((err) => res.status(400).json({ success: false, message: err }));
+      .then((lesson) => {
+        if (lesson == null) {
+          res.status(400).json({ success: false, message: "Lesson doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Lesson deleted" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
 
-  
+
   app.patch("/api/lessons/edit/:title", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const lesson = req.body.lesson;
     Lesson.findOneAndUpdate(
       { title: req.params.title },
       { title: lesson.title, description: lesson.description })
-      .then(() => 
-      res.status(200).json({ success: true, message: "lesson updated" }))
-      .catch((err) => res.status(400).json({ success: false, message: err }));    
+      .then((lesson) => {
+        if (lesson == null) {
+          res.status(400).json({ success: false, message: "Lesson doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Lesson updated" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
 
 

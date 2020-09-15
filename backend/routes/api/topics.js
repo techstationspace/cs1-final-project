@@ -39,12 +39,18 @@ module.exports = (app) => {
       );
   });
 
-  
+
   app.delete("/api/topics", userAuth, checkRole(["admin", "coach"]), (req, res, next) => {
     const topic = req.body.topic;
     Topic.findOneAndDelete({ title: topic.title })
-      .then(() => res.status(200).json({ success: true, message: "Topic deleted" }))
-      .catch((err) => res.status(400).json({ success: false, message: err }));
+      .then((topic) => {
+        if (topic == null) {
+          res.status(400).json({ success: false, message: "topic doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Topic deleted" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
 
 
@@ -54,8 +60,14 @@ module.exports = (app) => {
     Topic.findOneAndUpdate(
       { title: req.params.title },
       { title: topic.title, description: topic.description })
-      .then(() => res.status(200).json({ success: true, message: "topic updated" }))
-      .catch((err) => res.status(400).json({ success: false, message: err }));
+      .then((topic) => {
+        if (topic == null) {
+          res.status(400).json({ success: false, message: "topic doesn't exist" });
+        } else {
+          res.status(200).json({ success: true, message: "Topic updated" })
+        }
+      })
+      .catch((err) => res.status(400).json({ success: false, message: err.message }));
   });
   // Insert other routes here
 
