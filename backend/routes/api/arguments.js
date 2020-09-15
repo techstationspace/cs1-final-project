@@ -26,7 +26,9 @@ module.exports = (app) => {
     const argumentNew = new Argument({
       title: argument.title,
       description: argument.description,
-      topics: argument.topics
+      difficulty: argument.difficulty,
+      topics: argument.topics,
+      resources: argument.resources
     });
 
     argumentNew

@@ -26,7 +26,9 @@ module.exports = (app) => {
     const courseNew = new Course({
       title: course.title,
       description: course.description,
-      duration: course.duration
+      startDate: course.startDate,
+      duration: course.duration,
+      courseTemplate: course.courseTemplate
     });
 
     courseNew

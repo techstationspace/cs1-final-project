@@ -25,7 +25,10 @@ module.exports = (app) => {
 
     const exerciseNew = new Exercise({
       title: exercise.title,
-      description: exercise.description
+      description: exercise.description,
+      difficulty: exercise.difficulty,
+      topics: exercise.topics,
+      resourses: exercise.resourses
     });
 
     exerciseNew

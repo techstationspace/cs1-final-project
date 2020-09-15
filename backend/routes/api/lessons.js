@@ -26,7 +26,10 @@ module.exports = (app) => {
     const lessonNew = new Lesson({
       title: lesson.title,
       description: lesson.description,
-      slot: lesson.slot
+      slot: lesson.slot,
+      arguments: lesson.arguments,
+      exercises: lesson.exercises,
+      resources: lesson.resources
     });
 
     lessonNew
