@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState} from "react";
 import nextId from "react-id-generator";
 import CanddidacyPage from "../components/FormSendCandidacy";
@@ -25,6 +26,10 @@ let mokData = {
   birthday: "1999-05-12"
 };
 let students= [];
+=======
+import React, { useState } from "react";
+import { Grid, Button } from "@material-ui/core";
+>>>>>>> delete ButtonNav
 
 export default function StudentsPage() {
   let [data , setForm]= React.useState(mokData);
@@ -141,14 +146,5 @@ export default function StudentsPage() {
         ))}
       </Switch>
     </>
-  );
-}
-
-function StudentPage(student) {
-  return (
-    <Route
-      path={`students/${student.name}`}
-      render={(props) => <Student {...props} data={student} />}
-    />
   );
 }

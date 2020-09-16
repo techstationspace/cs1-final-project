@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import nextId from "react-id-generator";
 import { Grid, Button, TextField, makeStyles } from "@material-ui/core";
-import { Route, Link, Switch} from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import Course from "./Course";
 import LateralView from "../components/LateralView";
-import ButtonNavBar from "../components/ButtonNavBar";
 
-const courses = [
-];
+const courses = [];
 
 export default function CoursesPage() {
   const [openLateralView, setOpenLateralView] = useState(false);
@@ -18,7 +16,7 @@ export default function CoursesPage() {
   const submitForm = () => {
     let newFormData = {
       id: nextId("course-"),
-      path: title.replace(/\s+/g, '-').toLowerCase(),
+      path: title.replace(/\s+/g, "-").toLowerCase(),
       title: title,
       description: description,
     };
@@ -27,7 +25,6 @@ export default function CoursesPage() {
       course.path = newFormData.path;
       course.title = newFormData.title;
       course.description = newFormData.description;
-
     } else {
       courses.push(newFormData);
     }
@@ -40,12 +37,12 @@ export default function CoursesPage() {
     setDescription("");
     setCourseId("");
     setOpenLateralView(false);
-  }
+  };
 
   const findCourse = (id) => {
-    let [courseToEdit] = courses.filter(course => course.id === id);
+    let [courseToEdit] = courses.filter((course) => course.id === id);
     return courseToEdit;
-  }
+  };
 
   const editCourse = (id) => {
     setCourseId(id);
@@ -53,15 +50,28 @@ export default function CoursesPage() {
     setTitle(course.title);
     setDescription(course.description);
     setOpenLateralView(true);
-  }
+  };
   return (
     <>
-      <Grid container direction="row" alignItems="center" justify="space-between" >
-        <Grid item >  <h1>Courses Page</h1> </Grid>
-        <Grid item >
-          <ButtonNavBar  onClick={() => setOpenLateralView(true)} >
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        justify="space-between"
+      >
+        <Grid item>
+          <h1>Courses Page {title}</h1>
+        </Grid>
+        <Grid item>
+          <Button
+            className="custom-button"
+            variant="contained"
+            size="medium"
+            onClick={() => setOpenLateralView(true)}
+          >
             New Course
-      </ButtonNavBar> </Grid>
+          </Button>
+        </Grid>
       </Grid>
       <Grid container spacing={3}>
         {courses.map((course, idx) => (
@@ -70,9 +80,7 @@ export default function CoursesPage() {
               <h2>{course.title}</h2>
               <p>{course.description}</p>
             </Link>
-            <Button
-              variant="contained"
-              onClick={() => editCourse(course.id)}>
+            <Button variant="contained" onClick={() => editCourse(course.id)}>
               Edit course
             </Button>
           </Grid>
@@ -81,7 +89,8 @@ export default function CoursesPage() {
 
       <LateralView
         onOpen={openLateralView}
-        onClose={() => setOpenLateralView(false)}>
+        onClose={() => setOpenLateralView(false)}
+      >
         {/* Here start the children inside LateralView */}
         <form style={{ padding: "1rem" }}>
           <TextField
@@ -112,7 +121,7 @@ export default function CoursesPage() {
           </Button>
         </form>
       </LateralView>
-{/*             <Switch>
+      {/*             <Switch>
         {courses.map((course, i) => (
           <CoursePage key={i} {...course} />
         ))}
