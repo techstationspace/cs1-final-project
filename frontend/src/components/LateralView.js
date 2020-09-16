@@ -8,7 +8,7 @@ function LateralView({
   onClose = () => { },
 }) {
   return (
-    <Modal open={onOpen}>
+    <Modal style={{overflow:"auto"}} open={onOpen}>
       <Grid container justify="flex-end" alignItems="flex-start" spacing={0}>
         <Grid item md={8} lg={6}>
           <Box className="lateral-view-box">

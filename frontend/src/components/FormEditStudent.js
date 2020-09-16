@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
   },
   padding: {
-    padding: "6rem",
+    padding: "2rem",
   },
 }));
 let emptyData = {
@@ -292,7 +292,7 @@ function Form({ data, onSubmit }) {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Button
+        <Button className={classes.marginTop}
           disabled={
             form.privacy === "true" &&
               form.termsCondition === "true"

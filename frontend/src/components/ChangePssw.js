@@ -1,22 +1,27 @@
-import React, { useState } from "react"
-import {
-  TextField,
-  Grid,
-  Button,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { TextField, Grid, Button } from "@material-ui/core";
+const useStyles = makeStyles((theme) => ({
+  marginTop: {
+    marginTop: "2rem",
+  },
+  padding: {
+    padding: "2rem",
+  },
+}));
 
-function Form({ data, onSubmit }) {
+function Form({ onSubmit }) {
+  const classes = useStyles();
   const [correctPassword, setCorrectPassword] = useState(false);
-  const [password, setPassword] = useState("")
-  const [confPassword, setConfPassword] = useState("")
-
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
 
   return (
-    <form onSubmit={(event) => {
-      console.log(password);
-      event.preventDefault();
-    }
-    }>
+    <form
+      onSubmit={(event) => {
+        console.log(password);
+        event.preventDefault();
+      }}
+    >
       <Grid container spacing={3}>
         <Grid item>
           <TextField
@@ -50,19 +55,16 @@ function Form({ data, onSubmit }) {
         </Grid>
       </Grid>
 
-      <Button style={{ marginTop: "2rem" }}
-        disabled={
-          correctPassword === true
-            ? false
-            : true
-        }
+      <Button
+        style={{ marginTop: "2rem" }}
+        disabled={correctPassword === true ? false : true}
         type="submit"
         variant="outlined"
         color="primary"
       >
         Send Form
-</Button>
+      </Button>
     </form>
-  )
+  );
 }
-export default Form
+export default Form;

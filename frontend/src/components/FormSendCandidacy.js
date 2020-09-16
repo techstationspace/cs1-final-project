@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
   },
   padding: {
-    padding: "6rem",
+    padding: "2rem",
   },
 }));
 let emptyData = {
@@ -43,9 +43,12 @@ function Form({ data, onSubmit }) {
   const [correctPassword, setCorrectPassword] = useState(false);
   const [nationality, setValue] = useState(entryNationality);
   const [form, setForm] = useState(data || emptyData);
+  const [password,setPassword]= useState("")
+  const [confPassword, setConfPassword]= useState("")
 
   function handleSubmit(event) {
     form.nationality = nationality;
+    form.password = password
     event.preventDefault();
     console.log(form);
     onSubmit(form);
@@ -221,9 +224,13 @@ function Form({ data, onSubmit }) {
               name="password"
               label="Password"
               type="password"
-              value={form.password}
               required
-              onInput={updateData}
+              onInput={(e)=>setPassword(e.target.value)}
+              onChange ={(e) =>
+                confPassword !== e.target.value
+                  ? setCorrectPassword(false)
+                  : setCorrectPassword(true)
+              }
             />
           </Grid>
           <Grid item>
@@ -233,9 +240,9 @@ function Form({ data, onSubmit }) {
               label="Confirm Password"
               type="password"
               required
-              //onChange={(e)=>controlPassword(e)}
+              onInput={(e)=>setConfPassword(e.target.value)}
               onChange={(e) =>
-                form.password !== e.target.value
+                password !== e.target.value
                   ? setCorrectPassword(false)
                   : setCorrectPassword(true)
               }
@@ -319,7 +326,7 @@ function Form({ data, onSubmit }) {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Button
+        <Button className={classes.marginTop}
           disabled={
             correctPassword === true &&
               form.privacy === "true" &&

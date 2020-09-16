@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import nextId from "react-id-generator";
-import CanddidacyPage from "../components/CandidacyPage";
+import CanddidacyPage from "../components/FormSendCandidacy";
 import FormEditStudent from "../components/FormEditStudent"
 import { Grid, Button, TextField } from "@material-ui/core";
 import { Switch, Route, Link } from "react-router-dom";
