@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Grid, Button, List, ListItem } from "@material-ui/core";
 import LateralView from "../components/LateralView";
 import FormEditStudent from "../components/FormEditStudent";
-import ChangePassword from "../components/ChangePssw";
+import ChangePassword from "../components/ChangePassword";
 let data = {
   id: 1,
   name: "Matteo",

@@ -14,7 +14,7 @@ export default function CoachesPage() {
   <Grid item   >
           surname
           </Grid>
-          <Grid style={{marginRight:"0.7rem"}}item item >
+          <Grid style={{marginRight:"0.7rem"}} item >
           <ListItemAvatar>
         <Avatar alt="img" src={process.env.PUBLIC_URL + ""} />
       </ListItemAvatar>

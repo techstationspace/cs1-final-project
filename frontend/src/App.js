@@ -20,13 +20,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Frontend CS Final Project</h1>
+    <>
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      ></link>
       { isLogged
         ? <AppView />
         : <LoginView submitForm={(e) => checkLogin(e)} />
       }
-    </div>
+    </>
   );
 }
 

@@ -47,5 +47,6 @@ export const Routes = [
     name: "profile",
     path: `/profile`,
     component: Profile,
+    icon: "person",
   }
 ];

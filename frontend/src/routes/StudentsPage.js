@@ -1,9 +1,8 @@
 <<<<<<< HEAD
 import React, {useState} from "react";
 import nextId from "react-id-generator";
-import CanddidacyPage from "../components/FormSendCandidacy";
-import FormEditStudent from "../components/FormEditStudent"
-import { Grid, Button, TextField } from "@material-ui/core";
+import FormSendCandidacy from "../components/FormSendCandidacy";
+import { Grid, Button} from "@material-ui/core";
 import { Switch, Route, Link } from "react-router-dom";
 //import Course from "./Course";
 import Student from "./Profile";
@@ -109,36 +108,8 @@ export default function StudentsPage() {
       >
         {/* Here start the children inside LateralView */}
         
-        <FormEditStudent data={data} onSubmit={(e) => {submitForm(e)
+        <FormSendCandidacy data={data} onSubmit={(e) => {submitForm(e)
            setOpenLateralView(false)}}/>
-        {/*<form style={{padding: "1rem"}}>
-          <TextField
-            id="title-field"
-            label="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            fullWidth
-          />
-          <TextField
-            id="title-field"
-            label="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            multiline
-            fullWidth
-          />
-          <Button variant="contained" onClick={() => abortForm()}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => submitForm(courseId)}
-          >
-            Submit
-          </Button>
-        </form>*/}
       </LateralView>
       <Switch>
         {students.map((student, i) => (
