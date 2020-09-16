@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
-const candidateSchema = new mongoose.Schema({
-  //Possibile schema ?
-})
-
 const userSchema = new mongoose.Schema({
-  //  username: {
-  //  type: String,
-  //  required: true,
-  //},
 
   name: {
     type: String,
@@ -72,7 +64,18 @@ const userSchema = new mongoose.Schema({
     default: 'candidate',
     enum: ['student', 'candidate', 'coach', 'admin'],
   },
+  // verifica che il candidato ha completatto il test d'ingreso
+  verifiedTest: {
+    type: Boolean,
+    default: false, //change when is complete
+    test: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Test',
+    }]
+  }
+
 });
+
 const courseSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -95,10 +98,33 @@ const courseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'CourseTemplate',
   },
+  
+   // proposta aggiungere link: {type: String} per test d'ingreso
+
+  test: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Test',
+  }]
+
   // location: {
   // da definire se spostarlo su lesson
   //   type: String,
   // },
+});
+
+const testSchema = new mongoose.Schema ({
+  title: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+  },
+
+  link: {
+    type: String,
+  },
 });
 
 const lessonSchema = new mongoose.Schema({
@@ -237,6 +263,7 @@ const Lesson = mongoose.model('Lesson', lessonSchema);
 const CourseTemplate = mongoose.model('CourseTemplate', courseTemplateSchema);
 const Course = mongoose.model('Course', courseSchema);
 const Activity = mongoose.model('Activity', activitySchema);
+const Test = mongoose.model('Test', testSchema);
 
 module.exports = {
   User,
@@ -247,4 +274,5 @@ module.exports = {
   CourseTemplate,
   Course,
   Activity,
+  Test,
 };

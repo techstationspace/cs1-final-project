@@ -28,7 +28,8 @@ module.exports = (app) => {
       description: course.description,
       startDate: course.startDate,
       duration: course.duration,
-      courseTemplate: course.courseTemplate
+      courseTemplate: course.courseTemplate,
+      test: course.test
     });
 
     courseNew
@@ -61,7 +62,7 @@ module.exports = (app) => {
     const course = req.body.course;
     Course.findOneAndUpdate(
       { title: req.params.title },
-      { title: course.title, description: course.description, duration: course.duration })
+      { title: course.title, description: course.description, duration: course.duration, test: course.test})
       .then((course) => {
         if (course == null) {
           res.status(400).json({ success: false, message: "Course doesn't exist" });
