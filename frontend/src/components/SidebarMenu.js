@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   List,
@@ -7,20 +7,13 @@ import {
   makeStyles,
   ListItemAvatar,
   Avatar,
-  ListItemIcon,
 } from "@material-ui/core";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import PersonIcon from "@material-ui/icons/Person";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import LaptopChromebookIcon from "@material-ui/icons/LaptopChromebook";
 
 const styleLink = makeStyles({
   link: {
     color: "#666666",
     textDecoration: "none",
-    marginTop: "2rem",
+    marginTop: "1rem",
     fontSize: "1rem",
   },
   fcList: {
@@ -50,9 +43,9 @@ function Item({ route, icon }) {
   const classesLink = styleLink();
   return (
     <ListItem>
-      <Link className={classesLink.fcList} to={`${route.path}`}>
+      <Link className={classesLink.link} to={`${route.path}`}>
         {!!icon ? (
-          <Icon>{icon}</Icon>
+          <Icon >{icon}</Icon>
         ) : (
           <ListItemAvatar>
             <Avatar
