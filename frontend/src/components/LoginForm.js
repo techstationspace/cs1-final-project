@@ -20,6 +20,7 @@ function LoginForm({ submitForm = () => {} }) {
     password: "",
   });
 
+
   const updateField = (element) => {
     setLoginData({ ...loginData, [element.target.id]: element.target.value });
   };
