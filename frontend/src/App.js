@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./App.css";
+import AppView from "./components/AppView";
 import LoginView from "./components/LoginView";
 
 function App() {
@@ -19,13 +20,16 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Frontend CS Final Project</h1>
+    <>
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      ></link>
       { isLogged
-        ? <h1>AppView</h1>
+        ? <AppView />
         : <LoginView submitForm={(e) => checkLogin(e)} />
       }
-    </div>
+    </>
   );
 }
 

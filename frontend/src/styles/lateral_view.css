@@ -1,0 +1,8 @@
+.lateral-view-box {
+  background-color: white;
+  min-height: 100vh;
+}
+
+.lateral-view-box > h1 {
+  margin: 0;
+}
