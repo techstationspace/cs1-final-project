@@ -1,118 +1,117 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Paper, Grid, TextField, Button, FormControlLabel, Checkbox, makeStyles } from '@material-ui/core';
-import { Face, Fingerprint } from '@material-ui/icons'
+import React, { useState } from "react";
+import {
+  Container,
+  Paper,
+  Grid,
+  TextField,
+  Button,
+  FormControlLabel,
+  Checkbox,
+} from "@material-ui/core";
+import { Face, Fingerprint } from "@material-ui/icons";
 
+// TO DO LIST:
+//"Remember me" function needs to be implemented
+//"Forgot Password" function needs to be implemented
 
-    // TO DO LIST:
-    //"Remember me" function needs to be implemented
-    //"Forgot Password" function needs to be implemented
+function LoginForm({ submitForm = () => {} }) {
+  const [loginData, setLoginData] = useState({
+    username: "",
+    password: "",
+  });
 
- 
-const styled = makeStyles({
-    margin: {
-        margin: "1rem",
-    },
-    marginTop: {
-        marginTop: "1rem"
-    },
-    padding: {
-        padding: "1rem"
-    }
-});
+  const updateField = (element) => {
+    setLoginData({ ...loginData, [element.target.id]: element.target.value });
+  };
 
-const LoginForm = ({loginDataEx, onSubmit}) => {
-
-    const classes = styled()
-
-    const [loginData, setLoginData] = useState({ username:loginDataEx.username, password: loginDataEx.password })
-    const updateField = (element) => {
-        setLoginData(
-            { ...loginData, [element.target.id]: element.target.value }
-        )
-    }
-
- 
-    useEffect(() => {// Pressing "Enter" when either input field of #password or #username are focused triggers onSubmit function
-        function handleEnterKeypress(e) {
-            const inputIdFields = ["username", "password"]
-            if (e.key === 'Enter' && (inputIdFields.includes(document.activeElement.id))) {
-                onSubmit(loginData);
-            }
-        }
-        document.addEventListener("keypress", handleEnterKeypress)
-        return () => {document.removeEventListener("keypress", handleEnterKeypress)}
-    }, [loginData])
-
-
-    //JSX
-    return (
-        <Container maxWidth="sm">
-            <Button className={classes.divider} variant="contained" color="primary" onClick={() => console.log(loginData)}>LEGGI DATI LOGIN FIGLIO</Button>
-            <Paper className={classes.padding}elevation={3}>
-                <div className={classes.margin}>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Face />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField
-                                id="username"
-                                label="Username"
-                                type="email"
-                                value={loginData.username}
-                                onInput={updateField}
-                                fullWidth
-                                autoFocus
-                                required
-                            />
-                        </Grid>
+  return (
+    <Container maxWidth="sm">
+      <Paper style={{ padding: "2rem" }} elevation={3}>
+        <Grid container spacing={8}>
+          <Grid item>
+            <Grid container spacing={2} alignItems="flex-end">
+              <Grid item xs={12}>
+                <h1 style={{ margin: 0 }}>Login</h1>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item xs={1}>
+                    <Face />
+                  </Grid>
+                  <Grid item xs={11}>
+                    <TextField
+                      id="username"
+                      label="Username"
+                      type="email"
+                      value={loginData.username}
+                      onChange={updateField}
+                      fullWidth
+                      autoFocus
+                      required
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item xs={1}>
+                    <Fingerprint />
+                  </Grid>
+                  <Grid item xs={11}>
+                    <TextField
+                      id="password"
+                      label="Password"
+                      type="password"
+                      value={loginData.password}
+                      onChange={updateField}
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <>
+              {/*
+                <Grid item xs={12}>
+                  <Grid container justify="space-between" spacing={1}>
+                    <Grid item>
+                      <FormControlLabel
+                        control={<Checkbox color="primary" />}
+                        label="Remember me"
+                      />
                     </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Fingerprint />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField 
-                            id="password"
-                            label="Password"
-                            type="password"
-                            value={loginData.password}
-                            onInput={updateField}
-                            fullWidth
-                            required />
-                        </Grid>
+                    <Grid item>
+                      <Button
+                        disableFocusRipple
+                        disableRipple
+                        style={{ textTransform: "none" }}
+                        variant="text"
+                        color="primary"
+                      >
+                        Forgot password ?
+                      </Button>
                     </Grid>
-                    <Grid container alignItems="center" justify="space-between">
-                        <Grid item className={classes.marginTop}>
-                            <FormControlLabel control={
-                                <Checkbox
-                                    color="primary"
-                                />
-                            } label="Remember me" />
-                        </Grid>
-                        <Grid item className={classes.marginTop}>
-                            <Button
-                            disableFocusRipple 
-                            disableRipple 
-                            style={{ textTransform: "none" }} 
-                            variant="text" color="primary">
-                            Forgot password ?
-                            </Button>
-                        </Grid>
-                    </Grid>
-                    <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button 
-                        variant="outlined" 
-                        color="primary" 
-                        style={{ textTransform: "none" }} 
-                        onClick={() => onSubmit(loginData)}> 
-                        Login 
-                        </Button>
-                    </Grid>
-                </div>
-            </Paper>
-        </Container>
-    );
+                  </Grid>
+                </Grid>
+              */}
+              </>
+            </Grid>
+            <Grid container justify="center" style={{ marginTop: "10px" }}>
+              <Button
+                fullWidth
+                variant="outlined"
+                color="primary"
+                style={{ textTransform: "none" }}
+                onClick={() => submitForm(loginData)}
+              >
+                Login
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
+  );
 }
 
 export default LoginForm;
