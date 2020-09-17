@@ -16,7 +16,7 @@ import { Face, Fingerprint } from "@material-ui/icons";
 
 function LoginView({ submitForm = () => {} }) {
   const [loginData, setLoginData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -41,10 +41,10 @@ function LoginView({ submitForm = () => {} }) {
                   </Grid>
                   <Grid item xs={11}>
                     <TextField
-                      id="username"
-                      label="Username"
+                      id="email"
+                      label="Email"
                       type="email"
-                      value={loginData.username}
+                      value={loginData.email}
                       onChange={updateField}
                       fullWidth
                       autoFocus
