@@ -12,10 +12,16 @@ app.use(cors());
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
+const passport = require("passport");
+
+app.use(passport.initialize());
+require("./middlewares/passport")(passport);
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+     useFindAndModify: false 
   })
   .then(() => console.log('connected'))
   .catch((err) => console.error(err));
