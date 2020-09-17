@@ -3,6 +3,9 @@ import "./App.css";
 import AppView from "./components/AppView";
 import LoginView from "./components/LoginView";
 
+import SimpleCard from "./components/DailyActivityCard/DailyActivityC"
+import {ReportProblemIcon} from '@material-ui/icons';
+
 function App() {
   const [isLogged, setIsLogged] = useState(false);
 
