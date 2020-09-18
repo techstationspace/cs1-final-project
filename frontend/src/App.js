@@ -8,18 +8,12 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
 
   const checkLogin = (loginData) => {
-    // const config = {
-    //   headers: { Authorization: `Bearer ${token}` },
-    // };
-    console.log(loginData);
-    debugger;
     const bodyParameters = {
       user: loginData,
     };
     axios.post(
       "http://localhost:4000/api/login",
       bodyParameters
-      // config
     )
       .then(console.log)
       .catch(console.log);
