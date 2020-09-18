@@ -1,13 +1,13 @@
 {
   "name": "final-project-sketch",
   "version": "1.0.0",
+  "license": "ISC",
   "description": "",
   "main": "index.js",
   "scripts": {
     "init-db": "node scripts/initialize-database.js"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
