@@ -27,7 +27,7 @@ const styleLink = makeStyles({
   }
 });
 
-function AppView() {
+function AppView(token) {
   const classes = styleLink();
 
   return (
@@ -44,9 +44,9 @@ function AppView() {
           </Switch>
         </Grid>
       </Grid>
-
     </Router>
   );
+  
 }
 
 function RouteWithSubRoutes(route) {

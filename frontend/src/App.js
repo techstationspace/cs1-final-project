@@ -7,6 +7,8 @@ import LoginView from "./components/LoginView";
 function App() {
   const [isLogged, setIsLogged] = useState(false);
 
+  const [token, setToken] = useState("");
+
   const checkLogin = (loginData) => {
     const bodyParameters = {
       user: loginData,
@@ -15,8 +17,16 @@ function App() {
       "http://localhost:4000/api/login",
       bodyParameters
     )
-      .then(console.log)
-      .catch(console.log);
+      .then(function (response) {
+        setToken(response.data.token);
+        setIsLogged(true)
+        // console.log(!!token)
+      })
+      .catch(function (err) { 
+        console.log(err)
+      });
+
+     
   };
 
   return (
@@ -25,7 +35,8 @@ function App() {
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"
       ></link>
-      {false ? <AppView /> : <LoginView submitForm={(e) => checkLogin(e)} />}
+      {/* {!!token ? <AppView/>  : <LoginView submitForm={(e) => checkLogin(e)} />} */}
+      {isLogged ? <AppView token={token}/> : <LoginView submitForm={(e) => checkLogin(e)} />}
     </>
   );
 }
