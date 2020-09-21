@@ -13,6 +13,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -44,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#874399"
   },
 }));
+
+
+
 export default function SignUp({ submitForm = () => { } }) {
   const [registerData, setRegisterData] = useState({
     email: "",
@@ -57,6 +66,17 @@ export default function SignUp({ submitForm = () => { } }) {
   };
 
   const classes = useStyles();
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -106,10 +126,23 @@ export default function SignUp({ submitForm = () => { } }) {
               color="primary"
               className={classes.submit}
               style={{ textTransform: "none" }}
-              onClick={() => submitForm(registerData)}
+              onClick={() => { submitForm(registerData); handleClickOpen() }}
             >
               Sign Up
             </Button>
+            <Dialog
+              open={open}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Let Google help apps determine location. This means sending anonymous location data to
+                  Google, even when no apps are running.
+          </DialogContentText>
+              </DialogContent>
+            </Dialog>
           </form>
         </div>
       </Grid>
