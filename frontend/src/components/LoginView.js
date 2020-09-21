@@ -1,117 +1,144 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Paper,
-  Grid,
-  TextField,
-  Button,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
-import { Face, Fingerprint } from "@material-ui/icons";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
-// TO DO LIST:
-//"Remember me" function needs to be implemented
-//"Forgot Password" function needs to be implemented
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
-function LoginView({ submitForm = () => {} }) {
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+  },
+  image: {
+    backgroundImage:
+      "url(https://techstationpadova.it/wp-content/uploads/2018/04/Logo2018-vert.png)",
+    backgroundRepeat: "no-repeat",
+    backgroundColor:
+      theme.palette.type === "light"
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#874399",
+  },
+}));
+
+  
+
+  export default function LoginView({ submitForm = () => {} }) {
+    const [loginData, setLoginData] = useState({
+      email: "",
+      password: "",
+    });
+  
 
   const updateField = (element) => {
     setLoginData({ ...loginData, [element.target.id]: element.target.value });
   };
 
+  const classes = useStyles();
   return (
-    <Container maxWidth="sm">
-      <Paper style={{ padding: "2rem" }} elevation={3}>
-        <Grid container spacing={8}>
-          <Grid item>
-            <Grid container spacing={2} alignItems="flex-end">
-              <Grid item xs={12}>
-                <h1 style={{ margin: 0 }}>Login</h1>
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              id="email"
+              label="Email"
+              type="email"
+              value={loginData.email}
+              onChange={updateField}
+              fullWidth
+              autoFocus
+              required
+            />
+            <TextField
+              id="password"
+              label="Password"
+              type="password"
+              value={loginData.password}
+              onChange={updateField}
+              fullWidth
+              required
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              style={{ textTransform: "none" }}
+              onClick={() => submitForm(loginData)}
+            >
+              Login
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
               </Grid>
-              <Grid item xs={12}>
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item xs={1}>
-                    <Face />
-                  </Grid>
-                  <Grid item xs={11}>
-                    <TextField
-                      id="email"
-                      label="Email"
-                      type="email"
-                      value={loginData.email}
-                      onChange={updateField}
-                      fullWidth
-                      autoFocus
-                      required
-                    />
-                  </Grid>
-                </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
               </Grid>
-              <Grid item xs={12}>
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item xs={1}>
-                    <Fingerprint />
-                  </Grid>
-                  <Grid item xs={11}>
-                    <TextField
-                      id="password"
-                      label="Password"
-                      type="password"
-                      value={loginData.password}
-                      onChange={updateField}
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-              <>
-              {/*
-                <Grid item xs={12}>
-                  <Grid container justify="space-between" spacing={1}>
-                    <Grid item>
-                      <FormControlLabel
-                        control={<Checkbox color="primary" />}
-                        label="Remember me"
-                      />
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        disableFocusRipple
-                        disableRipple
-                        style={{ textTransform: "none" }}
-                        variant="text"
-                        color="primary"
-                      >
-                        Forgot password ?
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              */}
-              </>
             </Grid>
-            <Grid container justify="center" style={{ marginTop: "10px" }}>
-              <Button
-                fullWidth
-                variant="outlined"
-                color="primary"
-                style={{ textTransform: "none" }}
-                onClick={() => submitForm(loginData)}
-              >
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Container>
+            <Box mt={5}>
+              <Copyright />
+            </Box>
+          </form>
+        </div>
+      </Grid>
+    </Grid>
   );
-}
-
-export default LoginView;
+  }

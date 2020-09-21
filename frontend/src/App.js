@@ -14,17 +14,15 @@ function App() {
     const bodyParameters = {
       user: loginData,
     };
-    axios.post(
-      "http://localhost:4000/api/login",
-      bodyParameters
-    )
+    axios
+      .post("http://localhost:4000/api/login", bodyParameters)
       .then(function (response) {
         setToken(response.data.token);
-        setIsLogged(true)
+        setIsLogged(true);
         // console.log(!!token)
       })
       .catch(function (err) {
-        console.log(err)
+        console.log(err);
       });
   };
 
@@ -32,35 +30,31 @@ function App() {
     const bodyParameters = {
       user: registerData,
     };
-    axios.post(
-      "http://localhost:4000/api/users/register/new",
-      bodyParameters
-    ) 
-    .then(function (response) {
-      console.log(response.user.name)})
-      .catch(function(err) {
-        console.log(err)
+    axios
+      .post("http://localhost:4000/api/users/register/new", bodyParameters)
+      .then(function (response) {
+        console.log(response.user.name);
       })
+      .catch(function (err) {
+        console.log(err);
+      });
   };
 
-
-  
   return (
     <>
       <link
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"
       ></link>
-      {/* {!!token ? <AppView/>  : <LoginView submitForm={(e) => checkLogin(e)} />} */}
-
-      <SignUp submitForm={(e)=> checkRegister(e)}/>
+      {/* REGISTER VIEW */}
+       <SignUp submitForm={(e)=> checkRegister(e)}/>
 
       {/*LOGIN VIEW */}
-      {/* {isLogged ? <AppView token={token}/> : <LoginView submitForm={(e) => checkLogin(e)} />} */}
-
-      {/* REGISTER VIEW */}
-
-
+{/*       {isLogged ? (
+        <AppView token={token} />
+      ) : (
+        <LoginView submitForm={(e) => checkLogin(e)} />
+      )} */}
     </>
   );
 }
