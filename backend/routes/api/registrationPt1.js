@@ -3,7 +3,7 @@ const {validateEmail} = require('../../utils/auth.js');
 const sendEmail = require("../../utils/sendemail")
 
 module.exports = (app) => {
-  app.post('/api/register/new', async (req, res ) => {
+  app.post('/api/users/register/new', async (req, res ) => {
     //Here we register the users
     const user = req.body.user
 
@@ -31,14 +31,14 @@ module.exports = (app) => {
     //E-mail message settings
     const message = {
       from: 'noreply@techstation.com', // Sender address
-      to: `${user.email}`,         // List of recipients
+      to: `${userDB.email}`,         // List of recipients
       subject: 'Conferma il tuo indirizzo e-mail', // Subject line
-      html: `<h2>Benvenuto in Tech Station ${user.surname} ${user.name}.</h2>
+      html: `<h2>Benvenuto in Tech Station ${userDB.surname} ${userDB.name}.</h2>
       <br>
       Per favore clicca al seguente link per confermare il tuo indirizzo e-mail e portare a conclusione la tua registrazione:
-      <a href="www.youtube.com">http:www.123456.com</a>` // Html formatted body
+      <a href="http://localhost:4000/api/users/register/${userDB._id}">Link</a>` // Html formatted body
     };
-    //Sending e-mail to confirm email adress
+    //Sending e-mail to confirm email address
     sendEmail(message)
   })
 }
