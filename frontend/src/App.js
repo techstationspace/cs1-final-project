@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import AppView from "./components/AppView";
 import LoginView from "./components/LoginView";
+import SignUp from "./components/RegisterView";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -22,13 +23,28 @@ function App() {
         setIsLogged(true)
         // console.log(!!token)
       })
-      .catch(function (err) { 
+      .catch(function (err) {
         console.log(err)
       });
-
-     
   };
 
+  const checkRegister = (registerData) => {
+    const bodyParameters = {
+      user: registerData,
+    };
+    axios.post(
+      "http://localhost:4000/api/users/register/new",
+      bodyParameters
+    ) 
+    .then(function (response) {
+      console.log(response.user.name)})
+      .catch(function(err) {
+        console.log(err)
+      })
+  };
+
+
+  
   return (
     <>
       <link
@@ -36,7 +52,15 @@ function App() {
         rel="stylesheet"
       ></link>
       {/* {!!token ? <AppView/>  : <LoginView submitForm={(e) => checkLogin(e)} />} */}
-      {isLogged ? <AppView token={token}/> : <LoginView submitForm={(e) => checkLogin(e)} />}
+
+      <SignUp submitForm={(e)=> checkRegister(e)}/>
+
+      {/*LOGIN VIEW */}
+      {/* {isLogged ? <AppView token={token}/> : <LoginView submitForm={(e) => checkLogin(e)} />} */}
+
+      {/* REGISTER VIEW */}
+
+
     </>
   );
 }
