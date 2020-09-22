@@ -3,23 +3,10 @@ import "./App.css";
 import AppView from "./components/AppView";
 import LoginView from "./components/LoginView";
 
-import SimpleCard from "./components/DailyActivityCard/DailyActivityC"
-import {ReportProblemIcon} from '@material-ui/icons';
-import Carta from "./components/DailyActivityCard/DailyActivityC"
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
-
+  const isLogged = true;
   const checkLogin = (loginData) => {
-    const user = loginData.username;
-    const pwd = loginData.password;
-
-    // chiamata Autenticazione
-
-    if(!!user && !!pwd) {
-      setIsLogged(true);
-    } else {
-      setIsLogged(false);
-    }
+    console.log(loginData);
   }
 
   return (
