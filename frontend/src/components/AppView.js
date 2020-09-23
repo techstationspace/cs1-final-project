@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Routes } from "../RouteSchema";
+import { RoutesSideBar } from "../RouteSchema";
 import { Grid, makeStyles, } from "@material-ui/core";
 import SidebarMenu from "./SidebarMenu";
 
@@ -34,11 +34,11 @@ function AppView(token) {
     <Router >
       <Grid alignContent="stretch" className={classes.vh} container spacing={0}>
         <Grid className={classes.sidebarGrid} item md={2} lg={2} xl={2}>
-          <SidebarMenu routes={Routes} />
+          <SidebarMenu routes={RoutesSideBar} />
         </Grid>
         <Grid className={classes.switchGrid} item md>
           <Switch >
-            {Routes.map((route, i) => (
+            {RoutesSideBar.map((route, i) => (
               <RouteWithSubRoutes key={i} {...route} />
             ))}
           </Switch>

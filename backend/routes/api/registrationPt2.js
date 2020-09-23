@@ -2,9 +2,9 @@ const { User } = require('../../models/models.js');
 const sendEmail = require("../../utils/sendemail")
 
 module.exports = (app) => {
-  app.get('/api/register/newbis', async (req, res ) => {
-    const user = req.body.user                    //Possibile uso di params per identificare l'utente da link ?
-    const userQuery = await User.findOne({email: user.email})
+  app.get('/api/users/register/:id', async (req, res ) => {
+    //Possibile uso di params per identificare l'utente da link ?
+    const userQuery = await User.findOne({id: req.params.id})
     if (!userQuery) {
       res.status(400).json({success: false, message: "Selected e-mail not found"})
       return
@@ -13,8 +13,14 @@ module.exports = (app) => {
   })
 
 
-  app.post('/api/register/newbis', async (req, res ) => {
+  app.patch('/api/users/register/:id', async (req, res ) => {
     const user = req.body.user
+    User.findOneAndUpdate(
+      {id: req.params.id}, 
+      {
+
+      }
+    )
 
     //Db save
     /*const userDB = new User(user

@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState("");
+  const [isError, setIsError] = useState(false)
 
   const checkLogin = (loginData) => {
     const bodyParameters = {
@@ -93,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
       })
       .catch(function (err) {
         console.log(err);
+        setIsError(true)
       });
   };
 
@@ -119,6 +121,7 @@ const useStyles = makeStyles((theme) => ({
               fullWidth
               autoFocus
               required
+              error = {isError}
             />
             <TextField
               id="password"
@@ -150,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

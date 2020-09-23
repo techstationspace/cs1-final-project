@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./App.css";
 import AppView from "./components/AppView";
 import LoginView from "./components/LoginView";
 import SignUp from "./components/RegisterView";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 function App() {
 
@@ -17,13 +17,21 @@ function App() {
         rel="stylesheet"
       ></link>
       {/* REGISTER VIEW */}
-
-      {/*LOGIN VIEW */}
-     {isLogged ? (
-        <AppView token={token} />
-      ) : (
-        <LoginView  submitForm = { (token, isLogged) => {setToken(token); setIsLogged(isLogged)} }/>
-      )} 
+      <Router>
+        <Route path="/" exact><Redirect to="/api/login"/></Route>        
+          <Route path="/signup">
+            <SignUp/>
+          </Route>
+          <Route path="/api/login">
+        {isLogged ? (
+          <AppView token={token} />
+        ) : (
+            <LoginView submitForm={(token, isLogged) => { setToken(token); setIsLogged(isLogged) }} />
+          )}
+          </Route>
+        </Router>
+        
+        {/*LOGIN VIEW */}
     </>
   );
 }

@@ -1,3 +1,5 @@
+// SideBar routes
+
 import DashboardPage from "./routes/DashboardPage";
 import TopicsPage from "./routes/TopicsPage";
 import CoursesPage from "./routes/CoursesPage";
@@ -5,7 +7,8 @@ import CourseTemplatesPage from "./routes/CourseTemplatesPage";
 import CoachesPage from "./routes/CoachesPage";
 import StudentsPage from "./routes/StudentsPage";
 import Profile from "./routes/Profile";
-export const Routes = [
+import RegisterView from "./components/RegisterView";
+export const RoutesSideBar = [
   {
     name: "TechStation",
     path: "/",
@@ -48,5 +51,13 @@ export const Routes = [
     path: `/profile`,
     component: Profile,
     icon: "person",
+  },
+  {
+    name: "signup",
+    path: "/signup",
+    component: RegisterView,
+    icon: ""
   }
 ];
+
+
