@@ -51,12 +51,6 @@ export const RoutesSideBar = [
     path: `/profile`,
     component: Profile,
     icon: "person",
-  },
-  {
-    name: "signup",
-    path: "/signup",
-    component: RegisterView,
-    icon: ""
   }
 ];
 
