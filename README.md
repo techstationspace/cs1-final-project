@@ -67,3 +67,7 @@ Combinazione di orario + data.
 -per settare MongoDB sul proprio Database usare da bash dentro il progetto `cp .env.sample .env`
 -modificare il file `.env` mettendo il prorio MONGO_URL 
 
+## Istruzioni
+-per settare MongoDB sul proprio Database usare da bash dentro il progetto `cp .env.sample .env`
+-modificare il file `.env` mettendo il prorio MONGO_URL 
+
