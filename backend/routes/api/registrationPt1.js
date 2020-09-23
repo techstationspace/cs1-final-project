@@ -36,7 +36,7 @@ module.exports = (app) => {
       html: `<h2>Benvenuto in Tech Station ${userDB.surname} ${userDB.name}.</h2>
       <br>
       Per favore clicca al seguente link per confermare il tuo indirizzo e-mail e portare a conclusione la tua registrazione:
-      <a href="http://localhost:4000/api/users/register/${userDB._id}">Link</a>` // Html formatted body
+      <a href="http://localhost:3000/api/users/register/${userDB._id}">Link</a>` // Html formatted body
     };
     //Sending e-mail to confirm email address
     sendEmail(message)

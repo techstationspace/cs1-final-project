@@ -37,7 +37,7 @@ let emptyData = {
   birthday: "",
 };
 
-function Form({ data, onSubmit }) {
+function FormSendCandidacy({ data, onSubmit }) {
   const entryNationality = data ? data.nationality : { code: "", label: "", phone: "" }
   const classes = useStyles();
   const [correctPassword, setCorrectPassword] = useState(false);
@@ -344,4 +344,4 @@ function Form({ data, onSubmit }) {
     </div>
   );
 }
-export default Form;
+export default FormSendCandidacy;
