@@ -48,13 +48,13 @@ const userSchema = new mongoose.Schema({
     }
   },
   termsCondition: {
-    type: Boolean,
+    type: String,
   },
   privacy: {
-    type: Boolean,
+    type: String,
   },
   images: {
-    type: Boolean,
+    type: String,
   },
   birthday: {
     type: Date,
