@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 function Copyright() {
   return (
@@ -62,8 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
   
-
-  export default function LoginView({ submitForm = () => {} }) {
+  export default function LoginView({ submitForm }) {
     const [loginData, setLoginData] = useState({
       email: "",
       password: "",
@@ -75,6 +75,28 @@ const useStyles = makeStyles((theme) => ({
   };
 
   const classes = useStyles();
+
+  const [isLogged, setIsLogged] = useState(false);
+  const [token, setToken] = useState("");
+
+  const checkLogin = (loginData) => {
+    const bodyParameters = {
+      user: loginData,
+    };
+    axios
+      .post("http://localhost:4000/api/login", bodyParameters)
+      .then(function (response) {
+        setToken(response.data.token);
+        setIsLogged(true);
+        submitForm(response.data.token, true);
+        // console.log(!!token)
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -117,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
               color="primary"
               className={classes.submit}
               style={{ textTransform: "none" }}
-              onClick={() => submitForm(loginData)}
+              onClick={() => checkLogin(loginData)}
             >
               Login
             </Button>
@@ -128,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
