@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -21,34 +21,50 @@ const useStyles = makeStyles((theme) => ({
     padding: "2rem",
   },
 }));
-let emptyData = {
-  name: "",
-  surname: "",
-  email: "",
-  password: "",
-  gender: "",
-  address: "",
-  municipality: "",
-  zipCode: "",
-  nationality: "",
-  termsCondition: "",
-  privacy: "",
-  images: "",
-  birthday: "",
-};
 
 function FormSendCandidacy({ data, onSubmit }) {
-  const entryNationality = data ? data.nationality : { code: "", label: "", phone: "" }
+  console.log(data);
+  const entryNationality = data
+    ? data.nationality
+    : { code: "", label: "", phone: "" };
   const classes = useStyles();
   const [correctPassword, setCorrectPassword] = useState(false);
   const [nationality, setValue] = useState(entryNationality);
-  const [form, setForm] = useState(data || emptyData);
-  const [password,setPassword]= useState("")
-  const [confPassword, setConfPassword]= useState("")
+  const [form, setForm] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    gender: "",
+    address: "",
+    municipality: "",
+    zipCode: "",
+    nationality: "",
+    termsCondition: "",
+    privacy: "",
+    images: "",
+    birthday: "",
+    verifiedEmail: "",
+  });
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+
+  console.log(Object.values(data).length > 0 );
+
+  if( Object.values(data).length > 0 ) {
+    debugger;
+    setForm({
+      ...form,
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      verifiedEmail: data.verifiedEmail,
+    })
+  }
 
   function handleSubmit(event) {
     form.nationality = nationality;
-    form.password = password
+    form.password = password;
     event.preventDefault();
     console.log(form);
     onSubmit(form);
@@ -86,7 +102,7 @@ function FormSendCandidacy({ data, onSubmit }) {
             />
           </Grid>
           <Grid item xs={6}></Grid>
-          <Grid xs={6} item >
+          <Grid xs={6} item>
             <TextField
               fullWidth
               required
@@ -225,8 +241,8 @@ function FormSendCandidacy({ data, onSubmit }) {
               label="Password"
               type="password"
               required
-              onInput={(e)=>setPassword(e.target.value)}
-              onChange ={(e) =>
+              onInput={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
                 confPassword !== e.target.value
                   ? setCorrectPassword(false)
                   : setCorrectPassword(true)
@@ -240,7 +256,7 @@ function FormSendCandidacy({ data, onSubmit }) {
               label="Confirm Password"
               type="password"
               required
-              onInput={(e)=>setConfPassword(e.target.value)}
+              onInput={(e) => setConfPassword(e.target.value)}
               onChange={(e) =>
                 password !== e.target.value
                   ? setCorrectPassword(false)
@@ -326,11 +342,12 @@ function FormSendCandidacy({ data, onSubmit }) {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Button className={classes.marginTop}
+        <Button
+          className={classes.marginTop}
           disabled={
             correctPassword === true &&
-              form.privacy === "true" &&
-              form.termsCondition === "true"
+            form.privacy === "true" &&
+            form.termsCondition === "true"
               ? false
               : true
           }

@@ -24,7 +24,7 @@ function App() {
             <SignUp/>
           </Route>
           <Route path="/api/users/register/5f6afd26ee25e3ba35df29db">
-            <CandidacyPage dataId="5f6afd26ee25e3ba35df29db"/>
+            <CandidacyPage userId="5f6afd26ee25e3ba35df29db"/>
           </Route>
           <Route path="/api/login">
         {isLogged ? (
