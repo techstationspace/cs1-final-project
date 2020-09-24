@@ -52,7 +52,6 @@ function FormSendCandidacy({ data, onSubmit }) {
   console.log(Object.values(data).length > 0 );
 
   if( Object.values(data).length > 0 ) {
-    debugger;
     setForm({
       ...form,
       name: data.name,
@@ -78,7 +77,7 @@ function FormSendCandidacy({ data, onSubmit }) {
     });
   }
   return (
-    <div className={classes.padding}>
+      <div className={classes.padding}>
       <form onSubmit={handleSubmit}>
         <Grid container direction="row" spacing={4}>
           <Grid xs={3} item>
