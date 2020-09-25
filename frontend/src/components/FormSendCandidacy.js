@@ -27,40 +27,29 @@ function FormSendCandidacy({ data, onSubmit }) {
   const entryNationality = data
     ? data.nationality
     : { code: "", label: "", phone: "" };
+
   const classes = useStyles();
   const [correctPassword, setCorrectPassword] = useState(false);
   const [nationality, setValue] = useState(entryNationality);
   const [form, setForm] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-    gender: "",
-    address: "",
-    municipality: "",
-    zipCode: "",
-    nationality: "",
-    termsCondition: "",
-    privacy: "",
-    images: "",
-    birthday: "",
-    verifiedEmail: "",
+    name: !!data.name? data.name : "",
+    surname: !!data.surname? data.surname : "",
+    email: !!data.email? data.email : "",
+    password: !!data.password? data.password : "",
+    gender: !!data.gender? data.gender : "",
+    address: !!data.address? data.address : "",
+    municipality: !!data.municipality? data.municipality : "",
+    zipCode: !!data.zipCode? data.zipCode : "",
+    nationality: !!data.nationality? data.nationality : "",
+    termsCondition: !!data.termsCondition? data.termsCondition : "",
+    privacy: !!data.privacy? data.privacy : "",
+    images: !!data.images? data.images : "",
+    birthday: !!data.birthday? data.birthday : "",
+    verifiedEmail: !!data.verifiedEmail? data.verifiedEmail : "",
   });
+  console.log(form);
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
-
-  console.log(Object.values(data).length > 0 );
-
-  if( Object.values(data).length > 0 ) {
-    debugger;
-    setForm({
-      ...form,
-      name: data.name,
-      surname: data.surname,
-      email: data.email,
-      verifiedEmail: data.verifiedEmail,
-    })
-  }
 
   function handleSubmit(event) {
     form.nationality = nationality;

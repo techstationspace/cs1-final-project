@@ -18,20 +18,25 @@ let nameCourse = "CODING SCHOOL";
 
 function CandidacyPage({ userId }) {
   const classes = useStyles();
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState();
 
-  let bodyParameters = {};
+  const fetchUser = async () => {
+    await fetch(`http://localhost:4000/api/users/register/${userId}`)
+    .then((response) => response.json())
+     .then(function (response) {
+      console.log("ok request");
+      console.log(response.payload)
+      setUserInfo(response.payload);
+    })
+    .catch(function (err) {
+      console.log(err);
+    }); 
+  };
 
   useEffect(() => {
-    bodyParameters = { user: userId };
-    axios
-      .get(`http://localhost:4000/api/users/register/${userId}`, bodyParameters)
-      .then(function (response) {
-        !!response.data.payload && setUserInfo(response.data.payload);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+    console.log("in useEffect ok")
+    fetchUser();
+    console.log(userInfo);
   }, []);
 
   const confirmCadidacy = () => {
@@ -50,10 +55,14 @@ function CandidacyPage({ userId }) {
     <Container className={classes.paddingContainer}>
       <h1>Iscrizione al corso "{nameCourse}"</h1>
       <Paper elevation={3} className={classes.paddingForm}>
+        {userInfo ?
         <FormSendCandidacy
           data={userInfo}
           onSubmit={(e) => confirmCadidacy(e)}
         />
+        :
+        'loading'
+        }
       </Paper>
     </Container>
   );
