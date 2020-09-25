@@ -49,17 +49,6 @@ function FormSendCandidacy({ data, onSubmit }) {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
-  console.log(Object.values(data).length > 0 );
-
-  if( Object.values(data).length > 0 ) {
-    setForm({
-      ...form,
-      name: data.name,
-      surname: data.surname,
-      email: data.email,
-      verifiedEmail: data.verifiedEmail,
-    })
-  }
 
   function handleSubmit(event) {
     form.nationality = nationality;

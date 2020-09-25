@@ -19,7 +19,7 @@ module.exports = (app) => {
     console.log(req.body)
     console.log(req.params)
     //const user = req.body.payload
-    const user =req.body.user
+    const user =req.body
     const hashedPassword = await bcrypt.hash(user.password, 12)
     User.findOneAndUpdate(
       {_id: req.params.id}, 
