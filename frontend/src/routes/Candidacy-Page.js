@@ -20,8 +20,47 @@ const CandidacyPage = ({ userId }) => {
   const classes = useStyles();
   const [completeAxios, setCompleteAxios] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [candidateInfo, setCandidateInfo] = useState(
+    <Container className={classes.paddingContainer}>
+    <h1>Iscrizione al corso "{nameCourse}"</h1>
+    <Paper elevation={3} className={classes.paddingForm}>
+      <h1>loading...</h1>
+    </Paper>
+  </Container>
+  )
 
-  useEffect(() => {
+  let response;
+
+  const fetchUser = async () => {
+    response = await fetch(`http://localhost:4000/api/users/register/${userId}`)
+    .then((response) => response.json())
+     .then(function (response) {
+       setCandidateInfo(formCandidacy)
+      console.log(response)
+      setUserInfo(response.payload);
+      //setCompleteAxios(true);
+    })
+    .catch(function (err) {
+      console.log(err);
+    }); 
+  };
+
+  const formCandidacy = <Container className={classes.paddingContainer}>
+  <h1>Iscrizione al corso "{nameCourse}"</h1>
+  <Paper elevation={3} className={classes.paddingForm}>
+    <FormSendCandidacy
+      data={userInfo}
+      onSubmit={(e) => confirmCadidacy(e)}
+    />
+  </Paper>
+</Container>
+  
+  useEffect( () => {
+     fetchUser(userInfo)
+   }, [setCompleteAxios]
+  );
+
+  /* useEffect(() => {
     axios
       .get(`http://localhost:4000/api/users/register/${userId}`)
       .then(function (response) {
@@ -32,20 +71,50 @@ const CandidacyPage = ({ userId }) => {
         console.log(err);
       });
   }, []);
+ */
+const [isRegister, setIsRegister] = useState(false);
 
   const confirmCadidacy = (e) => {
     console.log(e);
-    // bodyParameters = info;
-    // axios
-    //   .post("registration-pt2", bodyParameters)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (err) {
-    //     console.log(err);
-    //   });
+    let bodyParameters = JSON.stringify(e);
+    console.log(bodyParameters);
+    axios
+      .patch(`http://localhost:4000/api/users/register/${userId}`, bodyParameters)
+      .then(function (response) {
+        if (!!response) {
+          console.log("wow")
+        }
+        console.log("ok")
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   };
-  if (!completeAxios) {
+
+  /* const checkLogin = (loginData) => {
+    const bodyParameters = {
+      user: loginData,
+    };
+    axios
+      .post("http://localhost:4000/api/login", bodyParameters)
+      .then(function (response) {
+        setToken(response.data.token);
+        setIsLogged(true);
+        submitForm(response.data.token, true);
+        // console.log(!!token)
+      })
+      .catch(function (err) {
+        console.log(err);
+        setIsError(true)
+      });
+  }; */
+
+
+
+
+  
+  /* if (!completeAxios) {
     return (
       <Container className={classes.paddingContainer}>
         <h1>Iscrizione al corso "{nameCourse}"</h1>
@@ -66,6 +135,10 @@ const CandidacyPage = ({ userId }) => {
           </Paper>
         </Container>
       );
-  }
+  } */
+
+return(candidateInfo);
+
 };
+
 export default CandidacyPage;

@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
   // verifica che il candidato ha completatto il test d'ingreso
   verifiedTest: {
     type: Boolean,
-    default: false, //change when is complete
+    default: true, //change when is complete
     test: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Test',
