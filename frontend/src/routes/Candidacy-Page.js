@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { Paper, Container, makeStyles } from "@material-ui/core";
 import FormSendCandidacy from "../components/FormSendCandidacy";
+import ConfirmSingIn from "../components/ConfirmSingIn"
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   marginTop: {
@@ -16,10 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 let nameCourse = "CODING SCHOOL";
 
-function CandidacyPage({ userId }) {
+function CandidacyPage() {
   const classes = useStyles();
   const [userInfo, setUserInfo] = useState();
-
+  const [sendData, setSendData] = useState(false);
+  const {userId}= useParams()
   const fetchUser = async () => {
     await fetch(`http://localhost:4000/api/users/register/${userId}`)
     .then((response) => response.json())
@@ -38,18 +41,20 @@ function CandidacyPage({ userId }) {
     fetchUser();
     console.log(userInfo);
   }, []);
+    const confirmCadidacy = (info) => {
+      axios
+        .patch(`http://localhost:4000/api/users/register/${userId}`, info)
+        .then(function (response) {
+          console.log("Ok");
+          console.log(response);
+          setUserInfo(false);
+          setSendData(true);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    };
 
-  const confirmCadidacy = () => {
-    // bodyParameters = info;
-    // axios
-    //   .post("registration-pt2", bodyParameters)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (err) {
-    //     console.log(err);
-    //   });
-  };
 
   return (
     <Container className={classes.paddingContainer}>
@@ -61,7 +66,7 @@ function CandidacyPage({ userId }) {
           onSubmit={(e) => confirmCadidacy(e)}
         />
         :
-        'loading'
+        sendData ? <ConfirmSingIn /> :'loading'
         }
       </Paper>
     </Container>

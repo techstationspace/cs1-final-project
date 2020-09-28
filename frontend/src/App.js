@@ -23,8 +23,8 @@ function App() {
           <Route path="/signup">
             <SignUp/>
           </Route>
-          <Route path="/api/users/register/5f6afd26ee25e3ba35df29db">
-            <CandidacyPage userId="5f6afd26ee25e3ba35df29db"/>
+          <Route path="/api/users/register/:userId" component={CandidacyPage}>
+            {/* <CandidacyPage/> */}
           </Route>
           <Route path="/api/login">
         {isLogged ? (

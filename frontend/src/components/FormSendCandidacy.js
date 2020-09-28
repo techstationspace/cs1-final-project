@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
 import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -12,6 +14,8 @@ import {
 } from "@material-ui/core";
 import countries from "./list-nations";
 import { Autocomplete } from "@material-ui/lab";
+import {MuiPickersUtilsProvider, KeyboardDatePicker} from "@material-ui/pickers"
+import moment from "moment";;
 
 const useStyles = makeStyles((theme) => ({
   marginTop: {
@@ -31,6 +35,7 @@ function FormSendCandidacy({ data, onSubmit }) {
   const classes = useStyles();
   const [correctPassword, setCorrectPassword] = useState(false);
   const [nationality, setValue] = useState(entryNationality);
+  const [birthday, setBirthday] = useState(moment().format("DD-MM-YYYY"))
   const [form, setForm] = useState({
     name: !!data.name? data.name : "",
     surname: !!data.surname? data.surname : "",
@@ -47,7 +52,6 @@ function FormSendCandidacy({ data, onSubmit }) {
     birthday: !!data.birthday? data.birthday : "",
     verifiedEmail: !!data.verifiedEmail? data.verifiedEmail : "",
   });
-  console.log(form);
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
@@ -55,6 +59,7 @@ function FormSendCandidacy({ data, onSubmit }) {
     form.nationality = nationality;
     form.password = password;
     event.preventDefault();
+    form.birthday= birthday;
     console.log(form);
     onSubmit(form);
     // You should see email and password in console.
@@ -93,6 +98,7 @@ function FormSendCandidacy({ data, onSubmit }) {
           <Grid item xs={6}></Grid>
           <Grid xs={6} item>
             <TextField
+              disabled={!!data.email? true : false}
               fullWidth
               required
               type="email"
@@ -111,7 +117,7 @@ function FormSendCandidacy({ data, onSubmit }) {
           spacing={3}
         >
           <Grid item>
-            <TextField
+          <TextField
               value={form.birthday}
               onInput={updateData}
               required
@@ -122,6 +128,23 @@ function FormSendCandidacy({ data, onSubmit }) {
                 shrink: true,
               }}
             />
+            {/* <MuiPickersUtilsProvider libInstance={moment} utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          margin="normal"
+          label="Birthday"
+          required
+          name="birthday"
+          format="MM/gg/yyyy"
+          value={birthday}
+          onChange={(event, newValue) => {
+            setBirthday(newValue);
+          }}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+            </MuiPickersUtilsProvider> */}
+        
           </Grid>
         </Grid>
         <Grid container className={classes.marginTop}>
@@ -175,6 +198,7 @@ function FormSendCandidacy({ data, onSubmit }) {
               fullWidth
               required
               name="zipCode"
+              type="number"
               value={form.zipCode}
               onInput={updateData}
               label="Zip Code"
