@@ -81,9 +81,24 @@ export default function StudentsPage() {
   };
   return (
     <>
-      <h1>Students Page</h1>
-      <Button onClick={() => setOpenLateralView(true)}>New Student</Button>
-      <Grid container spacing={3}>
+      <Grid
+        container
+        direction="row"
+        alignItems="center"
+        justify="space-between"
+        item
+        xs={12}
+      >
+        <Grid item xs={4} md={6}>
+          <h1>Students Page</h1>
+        </Grid>
+        <Grid style={{ marginRight: "1em" }} item>
+          <Button variant="contained" onClick={() => setOpenLateralView(true)}>
+            New Student
+          </Button>
+        </Grid>
+      </Grid>
+      <Grid container direction="row" item spacing={3}>
         {students.map((student, idx) => (
           <Grid key={idx} item md={6} lg={4}>
             <Link to={`student/${student.name}`}>
@@ -92,10 +107,11 @@ export default function StudentsPage() {
               </h2>
             </Link>
             <Button
+              style={{margin:"1em", color: "white", backgroundColor: "#874399" }}
               variant="contained"
               onClick={() => editCourse(student.name)}
             >
-              Edit course
+              Edit Student
             </Button>
           </Grid>
         ))}
@@ -131,3 +147,5 @@ function StudentPage(student) {
     />
   );
 }
+
+

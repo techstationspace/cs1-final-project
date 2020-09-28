@@ -7,6 +7,7 @@ import {
   makeStyles,
   ListItemAvatar,
   Avatar,
+  Grid,
 } from "@material-ui/core";
 
 const styleLink = makeStyles({
@@ -44,17 +45,27 @@ function Item({ route, icon }) {
   return (
     <ListItem>
       <Link className={classesLink.link} to={`${route.path}`}>
-        {!!icon ? (
-          <Icon >{icon}</Icon>
-        ) : (
-          <ListItemAvatar>
-            <Avatar
-              alt="img"
-              src={process.env.PUBLIC_URL + "/img/dashboard.jpg"}
-            />
-          </ListItemAvatar>
-        )}
-        {route.name}
+        <Grid
+          container
+          direction="row"
+          alignContent="center"
+          wrap="nowrap"
+          spacing={1}
+        >
+          <Grid item>
+            {!!icon ? (
+              <Icon>{icon}</Icon>
+            ) : (
+              <ListItemAvatar>
+                <Avatar
+                  alt="img"
+                  src={process.env.PUBLIC_URL + "/img/dashboard.jpg"}
+                />
+              </ListItemAvatar>
+            )}
+          </Grid>
+          <Grid item>{route.name}</Grid>
+        </Grid>
       </Link>
     </ListItem>
   );

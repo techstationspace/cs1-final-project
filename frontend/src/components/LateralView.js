@@ -12,7 +12,7 @@ function LateralView({
       <Grid container justify="flex-end" alignItems="flex-start" spacing={0}>
         <Grid item md={8} lg={6}>
           <Box className="lateral-view-box">
-            <Button onClick={() => onClose()}>Close</Button>
+            <Button variant="contained" style={{margin:"1em", color: "white", backgroundColor: "#874399" }} onClick={() => onClose()}>Close</Button>
             {children}
           </Box>
         </Grid>

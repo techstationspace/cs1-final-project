@@ -28,8 +28,8 @@ function Form({ onSubmit }) {
         event.preventDefault();
       }}
     >
-      <Grid container spacing={3}>
-        <Grid item>
+      <Grid style={{ padding: "1.5rem" }} container spacing={2} xs={12}>
+        <Grid item xs={6}>
           <TextField
             name="password"
             label="Password"
@@ -43,7 +43,7 @@ function Form({ onSubmit }) {
             }
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={6}>
           <TextField
             error={!correctPassword}
             id="confirm-password"
@@ -58,10 +58,11 @@ function Form({ onSubmit }) {
                 : setCorrectPassword(true)
             }
           />
-        </Grid>
       </Grid>
-
+      <Grid item>      
       <Button
+        style={{margin:"1em", color: "white", backgroundColor: "#874399" }}
+        variant="contained"
         style={{ marginTop: "2rem" }}
         disabled={correctPassword === true ? false : true}
         type="submit"
@@ -70,7 +71,10 @@ function Form({ onSubmit }) {
       >
         Send Form
       </Button>
+      </Grid>
+      </Grid>
     </form>
   );
 }
 export default Form;
+

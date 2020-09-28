@@ -59,10 +59,10 @@ export default function CoursesPage() {
         alignItems="center"
         justify="space-between"
       >
-        <Grid item>
+        <Grid item xs={4}>
           <h1>Courses Page {title}</h1>
         </Grid>
-        <Grid item>
+        <Grid style={{ marginRight: "1em" }} item>
           <Button
             className="custom-button"
             variant="contained"
@@ -75,7 +75,7 @@ export default function CoursesPage() {
       </Grid>
       <Grid container spacing={3}>
         {courses.map((course, idx) => (
-          <Grid key={idx} item md={6} lg={4}>
+          <Grid key={idx} item md={6} lg={3}>
             <Link to={`courses/${course.id}`}>
               <h2>{course.title}</h2>
               <p>{course.description}</p>

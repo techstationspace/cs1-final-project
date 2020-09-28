@@ -14,9 +14,9 @@ export default function TopicsPage() {
           <h1>Topics Page</h1>
         </Grid>
         <Grid item>
-          <Button className="custom-button">new exercise</Button>
-          <Button className="custom-button">new argument</Button>
-          <Button className="custom-button">new topic</Button>
+          <Button style={{margin:"1em", color: "white", backgroundColor: "#874399" }} className="custom-button">new exercise</Button>
+          <Button style={{margin:"1em", color: "white", backgroundColor: "#874399" }} className="custom-button">new argument</Button>
+          <Button style={{margin:"1em", color: "white", backgroundColor: "#874399" }} className="custom-button">new topic</Button>
         </Grid>
       </Grid>
     </>
