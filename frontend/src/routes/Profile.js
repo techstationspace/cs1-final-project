@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Grid, Button, List, ListItem } from "@material-ui/core";
 import LateralView from "../components/LateralView";
 import FormEditStudent from "../components/FormEditStudent";
 import ChangePassword from "../components/ChangePassword";
+import axios from "axios";
+
 let data = {
   id: 1,
   name: "Matteo",
@@ -20,18 +22,60 @@ let data = {
   birthday: "1999-05-12",
 };
 
+
 export default function Student() {
   const [openLateralView, setOpenLateralView] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
+  const [userInfo, setUserInfo] = useState();
+  const [passUpdate, setPassUpdate] = useState(false);
   console.log(data);
+
+  const fetchUser = async () => {
+    await fetch(`http://localhost:4000/profile`)
+    .then((response) => response.json())
+     .then(function (response) {
+      console.log("ok request");
+      console.log(response.payload)
+      setUserInfo(response.payload);
+    })
+    .catch(function (err) {
+      console.log(err);
+    }); 
+  };
+
+  useEffect(() => {
+    console.log("in useEffect ok")
+    fetchUser();
+    console.log(userInfo);
+  }, []);
+
+  const updateData = (info) => {
+    info.id = userInfo.id
+    const userProfile = {
+      pwdUpdate: passUpdate, 
+      user: {info}
+    }
+    axios
+      .patch(`http://localhost:4000/profile`, info)
+      .then(function (response) {
+        console.log("Ok");
+        console.log(response);
+        setUserInfo(false);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
   function EditPasswordOrData() {
     if (!editPassword) {
       return (
         <FormEditStudent
-          data={data}
+          data={userInfo}
           onSubmit={(e) => {
-            data = e;
             setOpenLateralView(false);
+            setPassUpdate(false);
+            updateData(e)
           }}
         />
       );
@@ -39,8 +83,9 @@ export default function Student() {
       return (
         <ChangePassword
           onSubmit={(e) => {
-            data.password = e;
             setOpenLateralView(false);
+            updateData(e);
+            setPassUpdate(true)
           }}
         />
       );
@@ -58,9 +103,9 @@ export default function Student() {
           justify="space-between"
         >
           <Grid item md={6}>
-            <h1>
+            {!userInfo ? "loading" : <h1>
               {data.name} {data.surname}
-            </h1>
+            </h1>}         
           </Grid>
           <Grid
             style={{ marginRight: "1em" }}
@@ -97,7 +142,7 @@ export default function Student() {
           </Grid>
         </Grid>
       </Grid>
-
+      {!userInfo ? "loading" : 
       <List dense={true}>
         <ListItem>
           <p>E-mail: {data.email}</p>
@@ -119,7 +164,8 @@ export default function Student() {
             {data.images == "true" ? "Accepted" : "No accepted"}
           </p>
         </ListItem>
-      </List>
+      </List>}
+      
       <LateralView
         onOpen={openLateralView}
         onClose={() => setOpenLateralView(false)}

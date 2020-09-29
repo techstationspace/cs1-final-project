@@ -1,12 +1,11 @@
 const { User } = require('../../models/models.js');
-const { Strategy, ExtractJwt } = require("passport-jwt");
 const { checkRole, userAuth } = require("../../utils/auth.js");
 const bcrypt = require("bcryptjs");
 
 
 module.exports= (app) =>{
   app.get('/profile', userAuth, async (req, res)=>{
-    
+    console.log(req)
     const user= req.user
     const clientInfo = await User.findOne({ email: user.email })
     res.status(200).json({success: true, message: "Sent selected user data", payload: clientInfo})
